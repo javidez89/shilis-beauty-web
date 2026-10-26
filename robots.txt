@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://javidez89.github.io/shilis-beauty-web/sitemap.xml
