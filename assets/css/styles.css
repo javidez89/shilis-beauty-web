@@ -188,3 +188,21 @@ p{margin-bottom:16px}
  .hero .button-group{grid-template-columns:1fr}
  .mosaic-label{font-size:.82rem;left:8px}
 }
+
+/* v1.3: salon atmosphere behind the original transparent cutouts. */
+.service-picture,.mosaic-item,.hero-photo,.editorial-image{
+ background-image:linear-gradient(135deg,rgba(23,12,26,.3),rgba(32,12,29,.52)),url('../img/salon-profesional.webp');
+ background-size:cover;background-position:center;
+}
+.gallery-tile img,.service-detail img{
+ background-image:linear-gradient(135deg,rgba(23,12,26,.3),rgba(32,12,29,.52)),url('../img/salon-profesional.webp');
+ background-size:cover;background-position:center;
+}
+.service-picture img,.mosaic-item img{filter:drop-shadow(0 8px 12px rgba(0,0,0,.24))}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-row>.field{min-width:0}
+.field input{min-width:0;max-width:100%}
+.field-help{margin:-6px 0 0;color:var(--muted)}
+.reservation-form{scroll-margin-top:110px}
+.contact-page .wa-float{display:none}
+@media(max-width:360px){.form-row{grid-template-columns:1fr}}

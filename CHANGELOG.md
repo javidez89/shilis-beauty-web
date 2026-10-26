@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## v1.3.0
+
+- Nombre completo y hora preferida obligatorios en el formulario de cita, incluidos en el mensaje de WhatsApp.
+- Botones principales de reserva dirigidos al formulario.
+- Fondo ilustrativo de salón profesional detrás de las imágenes de referencia.
+- Eliminado el botón flotante duplicado en contacto para evitar que cubra el formulario.
+
 ## v1.2.0
 
 - Escala de títulos y espacios más compacta en las cinco páginas.
