@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## v1.4.0
+
+- Seis nuevas imágenes suministradas con fondos fucsia y dorado integrados, optimizadas en WebP.
+- Portada, servicios y galería actualizados; encuadres ajustados para las nuevas composiciones.
+- Retirado el fondo de salón añadido por CSS en las imágenes actuales.
+
 ## v1.3.0
 
 - Nombre completo y hora preferida obligatorios en el formulario de cita, incluidos en el mensaje de WhatsApp.

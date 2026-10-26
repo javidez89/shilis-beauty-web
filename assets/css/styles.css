@@ -189,16 +189,13 @@ p{margin-bottom:16px}
  .mosaic-label{font-size:.82rem;left:8px}
 }
 
-/* v1.3: salon atmosphere behind the original transparent cutouts. */
-.service-picture,.mosaic-item,.hero-photo,.editorial-image{
- background-image:linear-gradient(135deg,rgba(23,12,26,.3),rgba(32,12,29,.52)),url('../img/salon-profesional.webp');
- background-size:cover;background-position:center;
-}
-.gallery-tile img,.service-detail img{
- background-image:linear-gradient(135deg,rgba(23,12,26,.3),rgba(32,12,29,.52)),url('../img/salon-profesional.webp');
- background-size:cover;background-position:center;
-}
-.service-picture img,.mosaic-item img{filter:drop-shadow(0 8px 12px rgba(0,0,0,.24))}
+/* v1.4: supplied campaign images include their own finished backgrounds. */
+.service-picture,.mosaic-item,.hero-photo,.editorial-image,.gallery-tile img,.service-detail img{background:#180c17}
+.service-picture img,.mosaic-item img{padding:0;filter:none;object-fit:contain}
+.service-picture{aspect-ratio:1.3}
+.gallery-tile img{padding:0;aspect-ratio:1}
+.service-detail img{padding:0}
+.hero-photo img{object-position:center 30%}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-row>.field{min-width:0}
 .field input{min-width:0;max-width:100%}
@@ -206,3 +203,9 @@ p{margin-bottom:16px}
 .reservation-form{scroll-margin-top:110px}
 .contact-page .wa-float{display:none}
 @media(max-width:360px){.form-row{grid-template-columns:1fr}}
+@media(max-width:600px){
+ .service-picture{aspect-ratio:auto}
+ .service-picture img{padding:0;object-fit:contain}
+ .gallery-tile img{padding:0}
+ .mosaic-item img{padding:0 0 20px}
+}
