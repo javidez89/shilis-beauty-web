@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## v1.5.0
+
+- «Agenda tu momento» abre en un popup desde los botones de reserva en las cinco páginas.
+- Formulario retirado del contenido fijo de Contacto; conserva validación y mensaje de WhatsApp.
+- Cierre con botón, Escape o fondo, control de foco y desplazamiento interno en móvil.
+
 ## v1.4.1
 
 - Los botones de reserva abren el bloque «Agenda tu momento» desde su encabezado, con margen para la navegación fija.

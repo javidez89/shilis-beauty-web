@@ -15,6 +15,31 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
     document.addEventListener('click', e => { if (!nav.contains(e.target) && !toggle.contains(e.target)) close(); });
   }
+  const dialog = document.querySelector('.booking-dialog');
+  if (dialog) {
+    let opener;
+    const openBooking = button => {
+      opener = button;
+      nav?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      if (!dialog.open) dialog.showModal();
+      document.body.classList.add('booking-open');
+    };
+    document.querySelectorAll('[data-booking-open]').forEach(button => {
+      button.addEventListener('click', () => openBooking(button));
+    });
+    dialog.querySelector('[data-booking-close]').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      const bounds = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.body.classList.remove('booking-open');
+      if (opener?.getClientRects().length) opener.focus();
+      else toggle?.focus();
+    });
+    if (location.hash === '#agenda-tu-momento') openBooking();
+  }
   const form = document.querySelector('#reservation-form');
   if (form) {
     const nameInput = form.querySelector('#nombre');

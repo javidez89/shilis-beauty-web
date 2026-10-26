@@ -210,3 +210,20 @@ p{margin-bottom:16px}
  .gallery-tile img{padding:0}
  .mosaic-item img{padding:0 0 20px}
 }
+
+/* Booking popup: native modal focus management and keyboard support. */
+.mobile-booking{display:none}
+.booking-open{overflow:hidden}
+.booking-dialog{width:min(540px,calc(100% - 28px));max-height:calc(100dvh - 32px);margin:auto;padding:0;border:1px solid rgba(255,143,204,.35);border-radius:22px;background:#211625;color:var(--cream);box-shadow:0 24px 90px #0009;overflow-y:auto;overscroll-behavior:contain}
+.booking-dialog::backdrop{background:rgba(6,3,9,.78);backdrop-filter:blur(5px)}
+.booking-content{padding:30px}
+.booking-content .overline{padding-right:36px}
+.booking-content h2{font-size:1.9rem;margin:8px 0 14px}
+.booking-content>p{font-size:.9rem}
+.booking-content .reservation-form{gap:13px}
+.booking-content .field input,.booking-content .field select{padding:11px 13px}
+.booking-content .field textarea{min-height:76px}
+.booking-close{position:sticky;top:12px;float:right;margin:12px 12px -48px 0;z-index:1;display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#39283c;color:white;font-size:1.7rem;line-height:1}
+.booking-close:hover{background:#54334c}
+@media(max-width:800px){.mobile-booking{display:inline-flex;align-self:flex-start}}
+@media(max-width:600px){.booking-content{padding:26px 20px}.booking-dialog{border-radius:18px}.booking-content h2{font-size:1.7rem}}
