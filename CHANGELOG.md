@@ -1,5 +1,9 @@
 # Historial de cambios
 
+## v1.4.1
+
+- Los botones de reserva abren el bloque «Agenda tu momento» desde su encabezado, con margen para la navegación fija.
+
 ## v1.4.0
 
 - Seis nuevas imágenes suministradas con fondos fucsia y dorado integrados, optimizadas en WebP.
