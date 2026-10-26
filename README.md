@@ -1,5 +1,9 @@
 # Shili's Alta Peluquería y Belleza ✦
 
+## Actualización v1.2.0
+
+Títulos, tarjetas y espacios compactos; inicio sin contenido repetido. Títulos y descripciones de búsqueda únicos para cada página, con referencias naturales a Mesitas del Colegio y datos estructurados del salón. Diseño revisado en seis tamaños entre 320 y 1440 píxeles. Esta actualización no incluye verificación en Google Search Console ni gestión del Perfil de Empresa de Google.
+
 ## Actualización visual v1.1.0
 
 Web pública: https://javidez89.github.io/shilis-beauty-web/

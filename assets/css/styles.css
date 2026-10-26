@@ -58,3 +58,133 @@
   .footer-logo{width:240px}.service-detail img{padding:4px}
 }
 @media(max-width:360px){.logo-link,.brand-mark{width:170px}.nav-row{gap:10px}.mobile-toggle{padding:10px}.hero-photo{height:385px}}
+
+/* v1.2: compact editorial scale and consistent spacing. */
+:root{--radius:18px}
+body{line-height:1.6}
+h1,h2,h3{text-wrap:balance}
+h1,h2{line-height:1.16}
+h2{font-size:clamp(1.8rem,3vw,2.55rem);margin-bottom:16px;letter-spacing:-.025em}
+h3{line-height:1.3}
+p{margin-bottom:16px}
+.section{padding-block:64px}
+.section-tight{padding-block:44px}
+.section-heading{max-width:760px;margin-bottom:26px}
+.section-heading h2{margin-top:8px;margin-bottom:12px}
+.section-heading p{margin-bottom:0;max-width:680px}
+.section-action{text-align:center;margin-top:24px}
+.overline{letter-spacing:.15em;font-size:.72rem}
+.lead{font-size:1rem;line-height:1.65}
+.nav-row{min-height:84px}
+.logo-link,.brand-mark{width:205px}
+.hero-layout{min-height:0;padding-block:40px;gap:52px;grid-template-columns:1.1fr 1fr}
+.hero h1{font-size:clamp(2.4rem,3.8vw,3.45rem);line-height:1.14;margin:14px 0 20px;letter-spacing:-.035em;max-width:620px}
+.hero h1 em{white-space:normal;display:block}
+.hero p{font-size:1rem;max-width:500px;margin-bottom:0}
+.hero .button-group{margin-top:24px}
+.hero-photo{height:470px;max-width:430px;justify-self:end;width:100%}
+.hero-label{font-size:1.08rem;padding:12px}
+.feature-item{padding:16px 20px;gap:12px}
+.feature-symbol{font-size:1.4rem}
+.feature-item strong{font-size:.88rem}
+.service-picture{aspect-ratio:1.65}
+.service-content{padding:20px}
+.service-content h3{margin-bottom:8px}
+.service-content p{font-size:.9rem;margin-bottom:14px}
+.callout{padding-block:32px}
+.callout h2{font-size:clamp(1.75rem,2.7vw,2.35rem);max-width:690px;margin-block:8px 10px}
+.callout p{margin-bottom:0;font-size:.95rem}
+.mosaic-item{min-height:245px}
+.mosaic-label{font-size:1.3rem;bottom:16px;left:18px}
+.page-hero{padding:40px 0 36px}
+.page-hero h1{font-size:clamp(2rem,3.8vw,3rem);margin-block:12px 14px}
+.page-hero p{font-size:1rem;margin-bottom:0}
+.service-detail{padding-block:20px;gap:24px}
+.service-detail h2{font-size:1.6rem}
+.service-detail img{height:125px}
+.gallery-tile img{aspect-ratio:1.18}
+.gallery-tile div{padding:18px 20px}
+.gallery-tile h2{font-size:1.45rem;margin-bottom:8px}
+.editorial-image{height:420px;min-height:0}
+.info-card{padding:26px}
+.info-card h3{margin-block:8px 12px}
+.info-icon{font-size:1.6rem}
+.contact-title{font-size:2rem}
+.step,.value{padding:24px}
+.step::before{font-size:2.2rem;margin-bottom:12px}
+.value .symbol{margin-bottom:12px}
+.poster-panel{gap:36px}
+.poster-panel img{max-height:430px}
+.footer{padding:40px 0 24px}
+.footer-logo{width:220px;margin-bottom:16px}
+.footer-bottom{margin-top:28px;padding-top:18px}
+.footer-bottom,.fineprint{line-height:1.6}
+@media(min-width:801px) and (max-width:1050px){
+ .hero-layout{gap:30px}.hero-photo{height:420px}.hero h1{font-size:2.6rem}
+ .logo-link,.brand-mark{width:180px}.nav-row{gap:16px}
+}
+@media(max-width:800px){
+ .nav-row{min-height:76px}.primary-nav{top:76px}
+ .logo-link,.brand-mark{width:190px}
+ .hero-layout{grid-template-columns:1fr 1fr;gap:24px;padding-block:32px}
+ .hero h1{font-size:clamp(2rem,4.5vw,2.7rem)}
+ .hero-photo{height:400px;min-height:0}
+ .hero .button-group{gap:10px}.hero .btn{padding-inline:18px}
+ .section{padding-block:48px}
+ .feature-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .feature-item{padding:14px 12px;gap:8px;align-items:flex-start}
+ .feature-item+.feature-item{border-top:0;border-left:1px solid var(--line)}
+ .feature-item span:not(.feature-symbol){font-size:.72rem;line-height:1.4;display:block}
+ .mosaic-item{min-height:240px}
+ .callout-inner{flex-direction:row;align-items:center;gap:24px}
+ .callout .btn{flex:none}
+}
+@media(max-width:600px){
+ .hero-layout{grid-template-columns:1fr;gap:26px;padding-block:30px}
+ .hero h1{font-size:clamp(2.05rem,8.2vw,2.8rem);max-width:480px}
+ .hero-photo{height:330px;max-width:360px;justify-self:center}
+ .hero-photo img{object-position:center 24%}
+ .hero-label{bottom:14px;font-size:1rem;padding:10px}
+ .hero .button-group{display:grid;grid-template-columns:1fr 1fr}
+ .hero .button-group .btn{font-size:.79rem;padding:11px 10px;min-height:46px}
+ .section{padding-block:38px}
+ .section-heading{margin-bottom:22px}
+ .section-heading h2{font-size:1.85rem}
+ .feature-item{padding:12px 9px;display:block}
+ .feature-symbol{display:none}
+ .feature-item strong{font-size:.75rem;line-height:1.35;margin-bottom:5px}
+ .feature-item span:not(.feature-symbol){font-size:.67rem}
+ .service-card{display:grid;grid-template-columns:115px 1fr;align-items:stretch}
+ .service-picture{height:100%;aspect-ratio:auto;min-height:190px}
+ .service-picture img{padding:8px;object-fit:contain}
+ .service-content{padding:18px 16px}
+ .service-content h3{font-size:1.3rem}
+ .service-content p{font-size:.85rem}
+ .text-link{font-size:.82rem}
+ .callout{padding-block:26px}.callout-inner{flex-direction:column;align-items:flex-start;gap:18px}
+ .callout h2{font-size:1.8rem}
+ .mosaic{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ .mosaic-item,.mosaic-item:nth-child(2),.mosaic-item:last-child{grid-column:span 1!important;min-height:145px;border-radius:14px}
+ .mosaic-item img{padding:6px 3px 25px}
+ .mosaic-label{font-size:.94rem;left:10px;bottom:12px}
+ .page-hero{padding:28px 0}
+ .page-hero h1{font-size:2.1rem}
+ .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .gallery-tile img{padding:10px;aspect-ratio:1}
+ .gallery-tile div{padding:14px 12px}
+ .gallery-tile h2{font-size:1.2rem}
+ .gallery-tile p{font-size:.8rem}
+ .info-card{padding:22px}.contact-cards{gap:14px}
+ .footer{padding:32px 0 80px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:24px 16px}
+ .footer-grid>div:first-child{grid-column:span 2}
+ .footer li a{font-size:.85rem}
+ .footer-bottom{margin-top:24px;gap:8px}
+ .editorial-image{height:350px}
+}
+@media(max-width:360px){
+ .logo-link,.brand-mark{width:170px}.hero h1{font-size:2rem}
+ .service-card{grid-template-columns:95px 1fr}.service-content{padding:16px 12px}
+ .hero .button-group{grid-template-columns:1fr}
+ .mosaic-label{font-size:.82rem;left:8px}
+}

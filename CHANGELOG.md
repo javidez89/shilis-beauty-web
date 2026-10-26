@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## v1.2.0
+
+- Escala de títulos y espacios más compacta en las cinco páginas.
+- Inicio sin el bloque que repetía el retrato de portada; servicios y galería compactos en móvil.
+- Títulos y descripciones únicos orientados al servicio y ubicación, con metadatos sociales coherentes.
+- Identificador, URL y logo del salón incluidos en los datos estructurados.
+- Verificación visual en 320, 375, 600, 768, 1024 y 1440 píxeles.
+
 ## v1.1.0
 
 - Logo original de mayor resolución en cabecera y pie de todas las páginas.
