@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## v1.1.0
+
+- Logo original de mayor resolución en cabecera y pie de todas las páginas.
+- Nuevas imágenes de inspiración optimizadas en WebP con transparencia.
+- Portada, servicios y galería adaptados para móvil y escritorio.
+- Textos de galería y metadatos sociales actualizados.
+
 Este proyecto utiliza [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [1.0.0] - 2026-10-25

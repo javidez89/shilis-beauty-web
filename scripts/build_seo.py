@@ -14,7 +14,7 @@ for f in files:
     target=base if f=='index.html' else base+f
     page=re.sub(r'<link rel="canonical" href="[^"]+">',f'<link rel="canonical" href="{target}">',page)
     page=re.sub(r'<meta property="og:url" content="[^"]+">',f'<meta property="og:url" content="{target}">',page)
-    page=re.sub(r'<meta property="og:image" content="[^"]+">',f'<meta property="og:image" content="{base}assets/img/afiche-original.webp">',page)
+    page=re.sub(r'<meta property="og:image" content="[^"]+">',f'<meta property="og:image" content="{base}assets/img/portada-v2.webp">',page)
     p.write_text(page,encoding='utf-8')
 locs='\n'.join(f'  <url><loc>{escape(base if f=="index.html" else base+f)}</loc></url>' for f in files)
 (ROOT/'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{locs}\n</urlset>\n',encoding='utf-8')

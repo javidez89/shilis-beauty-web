@@ -1,5 +1,11 @@
 # Shili's Alta Peluquería y Belleza ✦
 
+## Actualización visual v1.1.0
+
+Web pública: https://javidez89.github.io/shilis-beauty-web/
+
+El sitio utiliza el logo original facilitado y seis imágenes de inspiración nuevas, optimizadas en WebP con transparencia. Se renovaron portada, cabecera, tarjetas de servicios y galería para escritorio y móvil. Las imágenes de inspiración no representan trabajos del salón. El manual de marca y los recursos anteriores se conservan como documentación histórica de v1.0.0.
+
 Sitio estático **responsive y multipágina**, preparado para desplegar con **GitHub Pages**. Contenido en español de Colombia. Proyecto `v1.0.0`.
 
 ## Páginas
