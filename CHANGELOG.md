@@ -1,5 +1,10 @@
 # Historial de cambios
 
+## v1.7.1
+
+- Los nueve servicios nuevos se integran en la lista principal de Servicios de belleza con la misma estructura visual que los cinco anteriores.
+- Cada servicio conserva su imagen, descripción y botón de consulta; se elimina la sección separada.
+
 ## v1.7.0
 
 - Cada uno de los nueve servicios adicionales cuenta con una imagen representativa propia.
