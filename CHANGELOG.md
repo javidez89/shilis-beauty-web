@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## v1.7.0
+
+- Cada uno de los nueve servicios adicionales cuenta con una imagen representativa propia.
+- Tarjetas con imagen y distribución compacta de tres columnas en escritorio y horizontal en móvil.
+- Imágenes generadas con estilo fucsia y dorado, optimizadas en WebP y con textos alternativos.
+
 ## v1.6.0
 
 - Añadidos depilación de piernas y bikini, mechas, rollitos, cejas en henna, pestañas punto a punto, peinados para ocasiones especiales, peinados para niñas y corte.

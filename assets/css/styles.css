@@ -239,3 +239,20 @@ p{margin-bottom:16px}
 .service-booking{background:none;border:0;padding:0;text-align:left;align-self:flex-start;min-height:32px}
 @media(max-width:800px){.extra-services-layout{grid-template-columns:1fr}.extra-services-image{position:static;max-width:360px}.extra-services-grid{gap:12px}}
 @media(max-width:420px){.extra-services-grid{grid-template-columns:1fr}.extra-service{padding:18px}}
+
+/* Each additional service has its own representative campaign image. */
+.extra-services-layout{display:block}
+.extra-services-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.extra-service{padding:0;overflow:hidden}
+.extra-service-photo{width:100%;aspect-ratio:4/3;object-fit:contain;background:#180c17}
+.extra-service-content{padding:20px;display:flex;flex-direction:column;flex:1}
+.extra-service-content p{flex:1}
+@media(max-width:1050px){.extra-services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+ .extra-services-grid{grid-template-columns:1fr;gap:14px}
+ .extra-service{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:stretch}
+ .extra-service-photo{height:100%;aspect-ratio:auto;object-fit:contain}
+ .extra-service-content{padding:16px}
+ .extra-service h3{font-size:1.15rem}
+ .extra-service p{font-size:.84rem}
+}
