@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## v1.8.0
+
+- Slider automático en Inicio con los catorce servicios, imágenes y reserva con servicio seleccionado.
+- Flechas, indicadores, pausa y desplazamiento táctil; respeta la preferencia de movimiento reducido.
+- Rotación detenida con interacción de teclado, cursor, pestaña oculta o reserva abierta.
+
 ## v1.7.1
 
 - Los nueve servicios nuevos se integran en la lista principal de Servicios de belleza con la misma estructura visual que los cinco anteriores.
