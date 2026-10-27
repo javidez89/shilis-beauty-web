@@ -227,3 +227,15 @@ p{margin-bottom:16px}
 .booking-close:hover{background:#54334c}
 @media(max-width:800px){.mobile-booking{display:inline-flex;align-self:flex-start}}
 @media(max-width:600px){.booking-content{padding:26px 20px}.booking-dialog{border-radius:18px}.booking-content h2{font-size:1.7rem}}
+
+.extra-services-layout{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:28px;align-items:start}
+.extra-services-image{margin:0;position:sticky;top:110px}
+.extra-services-image img{width:100%;border-radius:var(--radius);border:1px solid var(--line)}
+.extra-services-image figcaption{font-size:.75rem;color:var(--muted);margin-top:10px}
+.extra-services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.extra-service{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);display:flex;flex-direction:column}
+.extra-service h3{font-size:1.25rem;margin-bottom:10px}
+.extra-service p{font-size:.88rem;flex:1;margin-bottom:14px}
+.service-booking{background:none;border:0;padding:0;text-align:left;align-self:flex-start;min-height:32px}
+@media(max-width:800px){.extra-services-layout{grid-template-columns:1fr}.extra-services-image{position:static;max-width:360px}.extra-services-grid{gap:12px}}
+@media(max-width:420px){.extra-services-grid{grid-template-columns:1fr}.extra-service{padding:18px}}

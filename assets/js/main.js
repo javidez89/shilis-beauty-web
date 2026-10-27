@@ -20,6 +20,7 @@
     let opener;
     const openBooking = button => {
       opener = button;
+      if (button?.dataset.service) dialog.querySelector('#servicio').value = button.dataset.service;
       nav?.classList.remove('is-open');
       toggle?.setAttribute('aria-expanded', 'false');
       if (!dialog.open) dialog.showModal();

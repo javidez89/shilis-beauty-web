@@ -1,5 +1,11 @@
 # Historial de cambios
 
+## v1.6.0
+
+- Añadidos depilación de piernas y bikini, mechas, rollitos, cejas en henna, pestañas punto a punto, peinados para ocasiones especiales, peinados para niñas y corte.
+- Servicios disponibles en los cinco popups, con selección automática desde las tarjetas nuevas.
+- Imagen de inspiración generada para los servicios adicionales, en estilo fucsia y dorado.
+
 ## v1.5.0
 
 - «Agenda tu momento» abre en un popup desde los botones de reserva en las cinco páginas.
