@@ -1,3 +1,8 @@
+# v2.1.2 / 2026-11-01
+
+- Se eliminan los encabezados introductorios visibles de Servicios, Galería, Nosotras y Contacto.
+- Se conserva un título accesible por página.
+
 # v2.1.1 / 2026-11-01
 
 - El bloque de ubicación del inicio muestra solo Cómo llegar y un mapa interactivo.
