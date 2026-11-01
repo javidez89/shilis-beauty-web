@@ -1,3 +1,9 @@
+# v2.1.1 / 2026-11-01
+
+- El bloque de ubicación del inicio muestra solo Cómo llegar y un mapa interactivo.
+- Coordenadas tomadas del enlace de ubicación previamente compartido por el salón.
+- Mapa al lado en escritorio y debajo en móvil.
+
 # v2.1.0 / 2026-11-01
 
 - Una sola hoja de estilos para toda la web.
