@@ -1,3 +1,7 @@
+# v2.0.1 / 2026-11-01
+
+- Las imágenes del carrusel llenan su espacio sin franjas de fondo laterales.
+
 # v2.0.0 / 2026-11-01
 
 - Identidad negro, plata y fucsia profundo, con superficies claras.
