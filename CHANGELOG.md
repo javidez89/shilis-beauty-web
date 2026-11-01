@@ -1,3 +1,10 @@
+# v2.0.0 / 2026-11-01
+
+- Identidad negro, plata y fucsia profundo, con superficies claras.
+- Logo actual adaptado a plata, conservando su diseño.
+- Estilo consistente en las cinco páginas y el formulario de consulta.
+- Manual de marca actualizado. Se conservan servicios, carrusel y reservas.
+
 # Historial de cambios
 
 ## v1.8.0
