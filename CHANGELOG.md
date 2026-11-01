@@ -1,3 +1,9 @@
+# v2.1.0 / 2026-11-01
+
+- Una sola hoja de estilos para toda la web.
+- Se unifican Inicio, Servicios, Galería, Nosotras, Contacto, manual y página 404.
+- Se conserva el carrusel sin franjas negras y la consulta por WhatsApp.
+
 # v2.0.1 / 2026-11-01
 
 - Las imágenes del carrusel llenan su espacio sin franjas de fondo laterales.
