@@ -50,3 +50,13 @@ for name in PAGES + ['404.html', 'docs/manual-marca.html']:
         if ref == '/shilis-beauty-web/': continue
         assert ((ROOT/name).parent/ref).exists(), f'{name}: missing resource {ref}'
 print('All 7 public HTML routes share the current brand system.')
+
+# Demo route must remain explicitly separate and carry all of its assets.
+demo = ROOT/'demo-agenda/index.html'
+demo_source = demo.read_text(encoding='utf-8-sig')
+assert 'noindex,nofollow' in demo_source
+assert 'solo en este navegador' in demo_source
+inspector = Inspector(); inspector.feed(demo_source)
+for ref in inspector.refs:
+    assert (demo.parent/ref).exists(), f'Demo missing asset: {ref}'
+print('PASS independent demo route, disclosure and local assets.')

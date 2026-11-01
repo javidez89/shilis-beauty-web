@@ -1,3 +1,10 @@
+# v2.2.0 / 2026-11-01
+
+- Demo independiente de agenda en /demo-agenda/.
+- Solicitudes locales, control de cruces por profesional y borrador de Google Calendar.
+- Cuenta de apertura configurada por el usuario; sin autorización API ni sincronización real.
+- No cambia el proceso actual de reservas ni publica solicitudes reales.
+
 # v2.1.2 / 2026-11-01
 
 - Se eliminan los encabezados introductorios visibles de Servicios, Galería, Nosotras y Contacto.
