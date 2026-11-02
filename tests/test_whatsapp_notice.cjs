@@ -14,3 +14,6 @@ assert.throws(()=>buildLink({...d,fecha:''}));
 assert.throws(()=>buildLink({...d,confirmada:'true'}));
 assert.throws(()=>buildLink(d,'unknown'));
 console.log('PASS consulta sin reserva y aviso de cita confirmada se distinguen.');
+
+assert.ok(!createMessage({...d,hora:'',confirmada:false},'consultation').includes('Hora preferida'));
+assert.throws(()=>buildLink({...d,hora:''}));

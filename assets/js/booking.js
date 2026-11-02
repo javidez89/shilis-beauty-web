@@ -11,13 +11,13 @@
  function createMessage(data,mode='confirmed'){
   const name=String(data.nombre||'').trim().replace(/\s+/g,' '),service=String(data.servicio||'').trim(),date=String(data.fecha||''),time=String(data.hora||'');
   if(name.length<3||name.length>100||!service||service.length>100)throw new Error('Completa tu nombre y el servicio.');
-  if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(time))throw new Error('Revisa la hora de la cita.');
   const confirmed=mode==='confirmed';
+  if((confirmed||time)&&!/^([01]\d|2[0-3]):[0-5]\d$/.test(time))throw new Error('Revisa la hora de la cita.');
   if(!confirmed&&mode!=='consultation')throw new Error('Elige un tipo de aviso válido.');
   if(confirmed&&data.confirmada!==true)throw new Error('Primero completa la reserva en Google y marca que está confirmada.');
   const day=date?formatDate(date):'';
   if(confirmed&&!day)throw new Error('Indica la fecha que confirmó Google.');
-  return [confirmed?"Hola, Shili's. Ya completé mi reserva en Google Calendar.":"Hola, Shili's. Quisiera consultar disponibilidad para una cita.",`Nombre completo: ${name}.`,`Servicio: ${service}.`,day?`${confirmed?'Fecha de la cita':'Fecha preferida'}: ${day}.`:'',`${confirmed?'Hora de la cita':'Hora preferida'}: ${time} (Colombia).`,data.mensaje?'Detalles: '+String(data.mensaje).trim().slice(0,500):'',confirmed?'Les comparto este aviso de mi reserva.':'Quedo pendiente de su confirmación.'].filter(Boolean).join('\n');
+  return [confirmed?"Hola, Shili's. Ya completé mi reserva en Google Calendar.":"Hola, Shili's. Quisiera consultar disponibilidad para una cita.",`Nombre completo: ${name}.`,`Servicio: ${service}.`,day?`${confirmed?'Fecha de la cita':'Fecha preferida'}: ${day}.`:'',time?`${confirmed?'Hora de la cita':'Hora preferida'}: ${time} (Colombia).`:'',data.mensaje?'Detalles: '+String(data.mensaje).trim().slice(0,500):'',confirmed?'Les comparto este aviso de mi reserva.':'Quedo pendiente de su confirmación.'].filter(Boolean).join('\n');
  }
  function buildLink(data,mode='confirmed'){return 'https://wa.me/573187862277?text='+encodeURIComponent(createMessage(data,mode));}
  if(typeof module!=='undefined')module.exports={createMessage,buildLink,formatDate};
@@ -28,28 +28,40 @@
  const details=find('[data-booking-details]'),calendar=find('[data-booking-calendar]'),frame=find('[data-booking-frame]');
  const heading=find('#booking-title'),step=find('[data-booking-step]'),intro=find('[data-booking-intro]'),trial=find('[data-booking-trial]'),help=find('#hora-ayuda');
  const submit=find('[data-booking-submit]'),consult=find('[data-booking-consult]'),confirmLabel=find('[data-booking-confirm]'),confirmation=find('#reserva-confirmada'),returnCalendar=find('[data-booking-calendar-back]'),status=find('[data-booking-status]');
- const nameInput=form.elements.nombre,dateInput=form.elements.fecha;
- let phase='details';
- function values(){const data=Object.fromEntries(new FormData(form));data.confirmada=confirmation.checked;return data;}
+ const nameInput=form.elements.nombre,dateInput=form.elements.fecha,timeInput=form.elements.hora;
+ let phase='details',reserved=null,picker=null;
+ const endpoint=root.SHILIS_AGENDA_CONFIG?.endpoint||'';
+ function values(){const data=Object.fromEntries(new FormData(form));if(reserved)Object.assign(data,reserved);data.confirmada=!!reserved||confirmation.checked;return data;}
  function showDetails(confirmed=false,focus=true){
+  if(!confirmed)reserved=null;
   phase=confirmed?'notice':'details';details.hidden=false;calendar.hidden=true;dialog.classList.remove('is-calendar');dialog.setAttribute('aria-labelledby','booking-title');
   heading.textContent=confirmed?'Avísanos de tu reserva':'Agenda tu momento';
   step.textContent=confirmed?'Shili’s · Citas · Paso 3 de 3':'Shili’s · Citas · Paso 1 de 3';
   intro.textContent=confirmed?'Tus datos siguen aquí. Revisa e indica la fecha y hora exactas que confirmó Google. Después abriremos WhatsApp con el aviso preparado.':'Empieza aquí: cuéntanos qué necesitas. Luego elegirás un horario disponible en Google Calendar y podrás avisarnos por WhatsApp con estos mismos datos.';
-  help.textContent=confirmed?'Usa la hora exacta de tu reserva confirmada, en hora de Colombia. Este aviso no crea ni modifica la cita.':'Esta es tu preferencia. En el siguiente paso, Google mostrará los horarios disponibles y confirmará tu reserva.';
+  help.textContent=confirmed?'Usa la hora exacta de tu reserva confirmada, en hora de Colombia. Este aviso no crea ni modifica la cita.':'La hora se elige en el siguiente paso, entre los horarios disponibles.';
   find('label[for="fecha"]').textContent=confirmed?'Fecha confirmada en Google *':'Fecha preferida (opcional)';
-  find('label[for="hora"]').textContent=confirmed?'Hora confirmada (Colombia) *':'Hora preferida *';
+  find('[data-booking-time]').hidden=!confirmed;timeInput.disabled=!confirmed;timeInput.required=confirmed;
+  find('[data-booking-date-row]').classList.toggle('booking-date-row',!confirmed);
   submit.textContent=confirmed?'Enviar aviso por WhatsApp ↗':'Ver horarios y reservar';
   confirmation.checked=false;confirmation.required=confirmed;confirmLabel.hidden=!confirmed;dateInput.required=confirmed;
   consult.hidden=confirmed;returnCalendar.hidden=!confirmed;trial.hidden=confirmed;status.textContent='';
+  nameInput.readOnly=!!reserved;form.elements.servicio.disabled=!!reserved;dateInput.readOnly=!!reserved;timeInput.readOnly=!!reserved;
+  if(reserved){confirmation.checked=true;confirmation.required=false;confirmLabel.hidden=true;returnCalendar.hidden=true;intro.textContent='Tu cita ya quedó registrada en Google Calendar. Abre el aviso y pulsa Enviar en WhatsApp para que el salón lo reciba.';}
   dialog.scrollTop=0;if(focus)heading.focus({preventScroll:true});
  }
  function showCalendar(reload){
   phase='calendar';details.hidden=true;calendar.hidden=false;dialog.classList.add('is-calendar');dialog.setAttribute('aria-labelledby','booking-calendar-title');
   confirmation.checked=false;
   const data=values();
-  find('[data-booking-preference]').textContent=`${data.nombre} · ${data.servicio}\nTu preferencia: ${data.fecha?formatDate(data.fecha):'fecha por elegir'} a las ${data.hora} (Colombia).\nEl horario definitivo será el que confirme Google.`;
-  if(reload||!frame.getAttribute('src'))frame.src=CALENDAR_URL;
+  find('[data-booking-preference]').textContent=`${data.nombre} · ${data.servicio}\nTu preferencia: ${data.fecha?formatDate(data.fecha):'fecha por elegir'}. La hora se elige abajo (Colombia).\nEl horario definitivo será el que confirme Google.`;
+  const custom=!!endpoint;
+  find('[data-booking-picker]').hidden=!custom;frame.hidden=custom;find('[data-booking-next]').hidden=custom;
+  find('[data-booking-native]').hidden=custom;find('[data-booking-native-link]').hidden=custom;find('[data-booking-native-footer]').hidden=custom;
+  find('#booking-calendar-title').textContent=custom?data.nombre:'Confirma tu horario';
+  if(custom){
+   if(!picker)picker=root.ShilisCalendarPicker.create({element:find('[data-booking-picker]'),endpoint: endpoint,onReserved:receipt=>{reserved=receipt;nameInput.value=receipt.nombre;form.elements.servicio.value=receipt.servicio;dateInput.value=receipt.fecha;timeInput.value=receipt.hora;showDetails(true);}});
+   picker.open(data);
+  }else if(reload||!frame.getAttribute('src'))frame.src=CALENDAR_URL;
   dialog.scrollTop=0;find('#booking-calendar-title').focus({preventScroll:true});
  }
  nameInput.addEventListener('input',()=>nameInput.setCustomValidity(''));

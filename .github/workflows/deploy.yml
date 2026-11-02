@@ -24,6 +24,8 @@ jobs:
         run: node tests/test_agenda.cjs
       - name: Validate WhatsApp notice
         run: node tests/test_whatsapp_notice.cjs
+      - name: Validate dedicated Calendar integration
+        run: node tests/test_calendar_api.cjs
       - name: Validate internal pages and assets
         run: python3 tests/test_site.py
   deploy:

@@ -1,3 +1,11 @@
+# v2.4.1 / 2026-11-01
+
+- Se elimina Hora preferida del primer paso; se elige la hora únicamente al reservar.
+- La consulta directa por WhatsApp ya no exige hora. El aviso confirmado conserva la hora real.
+- Selector sin datos de contacto e integración dedicada con Google preparados, desactivados hasta autorizar y verificar su conexión.
+- El modo preparado crea eventos privados con el nombre del cliente, bloquea turnos ocupados y evita duplicados en reintentos.
+- El formulario nativo de Google sigue siendo la conexión activa mientras se autoriza el reemplazo.
+
 # v2.4.0 / 2026-11-01
 
 - El formulario Agenda tu momento sigue siendo la entrada principal en las cinco páginas y la demo.

@@ -42,7 +42,7 @@ print('All static-site smoke tests passed.')
 # Every public HTML route uses the same versioned brand stylesheet and silver logo.
 for name in PAGES + ['404.html', 'docs/manual-marca.html']:
     source = (ROOT/name).read_text(encoding='utf-8')
-    assert 'styles.css?v=2.4.0' in source, f'{name}: inconsistent brand stylesheet'
+    assert 'styles.css?v=2.4.1' in source, f'{name}: inconsistent brand stylesheet'
     assert 'identity.css' not in source, f'{name}: duplicate legacy theme'
     assert 'logo-plata.webp' in source, f'{name}: inconsistent logo'
     inspector = Inspector(); inspector.feed(source)
@@ -70,7 +70,7 @@ import hashlib
 fragments=[]
 for name in PAGES+['demo-agenda/index.html']:
     text=(ROOT/name).read_text(encoding='utf-8')
-    assert 'booking.js?v=2.4.0' in text,name
+    assert 'booking.js?v=2.4.1' in text,name
     block=re.search(r'<dialog class="booking-dialog".*?</dialog>',text,re.S).group()
     fragments.append(hashlib.sha256(block.encode()).hexdigest())
     p=Inspector();p.feed(text)
@@ -81,3 +81,11 @@ for name in PAGES+['demo-agenda/index.html']:
 assert len(set(fragments))==1,'Booking form differs between pages'
 assert 'wa.me' not in (ROOT/'assets/js/main.js').read_text(encoding='utf-8'),'Duplicate booking handler'
 print('PASS same primary dialog on all six routes, unique IDs and single booking controller.')
+
+# The preferred-time field must stay disabled and hidden on first render, even on deep links.
+for name in PAGES+['demo-agenda/index.html']:
+    text=(ROOT/name).read_text(encoding='utf-8')
+    assert 'data-booking-time hidden' in text
+    assert 'id="hora" disabled' in text
+    assert '>Hora preferida *<' not in text
+print('PASS no preferred-time input in the first booking step.')
