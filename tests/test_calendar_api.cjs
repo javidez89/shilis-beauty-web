@@ -17,8 +17,8 @@ const context=vm.createContext({Date:Clock,JSON,Object,String,Number,Error,Array
  }}
 });
 vm.runInContext(code,context);
-const get=date=>JSON.parse(context.doGet({parameter:{date}}).text);
-const post=payload=>JSON.parse(context.doPost({postData:{contents:JSON.stringify(payload)}}).text);
+const get=date=>JSON.parse(JSON.stringify(context.getAvailableSlots(date)));
+const post=payload=>JSON.parse(JSON.stringify(context.reserveTime(payload)));
 assert.equal(get('2026-11-02').code,'SETUP_REQUIRED');context.setup();context.setup();assert.equal(createdCalendars,1);
 const a=get('2026-11-02'),b=get('2026-11-02');assert.equal(a.slots.length,8);assert.equal(a.slots[0],'09:00');assert.equal(a.slots.at(-1),'16:00');
 assert.equal(get('2026-11-07').slots.length,0);assert.equal(get('2026-11-01').code,'OUTSIDE_WINDOW');assert.equal(get('2026-11-31').code,'INVALID_DATE');

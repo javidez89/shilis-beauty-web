@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-CO"><head><base target="_top"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;padding:24px;background:#f7f6f2;color:#18181b;font:16px/1.6 Arial,Helvetica,sans-serif}main{max-width:640px;margin:auto}.overline{color:#b10f68;font-size:12px;letter-spacing:.13em;font-weight:700;text-transform:uppercase}h1{font-size:clamp(26px,6vw,38px);line-height:1.15;margin:12px 0}p{color:#5b565e}.service{margin-bottom:24px}label{display:block;font-size:14px;font-weight:bold;margin-bottom:8px}input{width:100%;min-height:50px;padding:12px;border:1px solid #8a858d;border-radius:8px;font:inherit;background:white;color:#18181b}.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:12px;margin:20px 0}button,.button{display:inline-flex;justify-content:center;align-items:center;padding:12px 20px;min-height:48px;border-radius:8px;font:700 14px Arial,sans-serif;border:1px solid #b10f68;background:#b10f68;color:#fff;cursor:pointer;text-decoration:none}.slots button{background:white;color:#18181b;border-color:#8a858d}.slots button[aria-pressed=true]{color:white;background:#b10f68;border-color:#b10f68}button:disabled{opacity:.5;cursor:wait}.primary{width:100%;margin-top:12px}.refresh{color:#b10f68;background:none;border:0;padding:12px 0;text-decoration:underline}.fineprint{font-size:13px}#receipt{padding:20px;border:1px solid #bfc2c8;border-radius:12px;background:white;white-space:pre-line}.button[hidden],[hidden]{display:none!important}:focus-visible{outline:3px solid #b10f68;outline-offset:3px}
+</style></head><body><main><div class="overline">Shili’s · Reserva de hora</div><h1 id="customer">Confirma tu horario</h1><p id="service" class="service"></p><p id="intro">Selecciona una hora libre. La cita se guardará en Google Calendar con tu nombre. Aquí no necesitas escribir correo ni teléfono.</p><section id="picker" hidden><label for="date">Día de la cita</label><input type="date" id="date"><button class="refresh" id="refresh" type="button">Consultar horarios</button><div class="slots" id="slots" role="group" aria-label="Horas disponibles"></div><button class="primary" id="reserve" type="button" disabled>Reservar esta hora</button><p class="fineprint">Agenda de prueba · 60 minutos · Lunes a viernes, 9:00 a. m. a 5:00 p. m. · Colombia.</p></section><p id="status" role="status" aria-live="polite">Cargando tus datos…</p><section id="success" hidden><h2>Cita registrada</h2><p id="receipt"></p><a class="button primary" id="whatsapp" target="_blank" rel="noopener noreferrer">Abrir aviso por WhatsApp ↗</a><p class="fineprint">Pulsa Enviar dentro de WhatsApp para que el salón reciba el aviso. La cita ya está registrada; este aviso no la modifica.</p></section></main><script>
+'use strict';
+const ui=id=>document.getElementById(id),date=ui('date'),slots=ui('slots'),submit=ui('reserve'),status=ui('status');
+let customer=null,token='',selected='',version=0,attempt=null,writing=false;
+const errors={SLOT_TAKEN:'Ese horario acaba de ocuparse. Actualiza y elige otro.',TOKEN_EXPIRED:'Los horarios vencieron. Pulsa Consultar horarios.',BUSY:'La agenda está atendiendo otra reserva. Intenta de nuevo.',OUTSIDE_WINDOW:'Elige una fecha desde hoy y hasta los próximos 30 días.',UNAVAILABLE:'No pudimos confirmar la reserva. Reintenta para comprobar el mismo turno sin duplicarlo.'};
+function reportHeight(){if(customer)window.top.postMessage({source:'shilis-booking',type:'height',nonce:customer.nonce,height:document.documentElement.scrollHeight},'https://javidez89.github.io');}
+function load(){
+ if(writing||!customer)return;
+ const current=++version;selected='';token='';attempt=null;submit.disabled=true;slots.replaceChildren();
+ if(!date.value){status.textContent='Elige el día de tu cita.';return;}
+ status.textContent='Consultando los horarios de Google Calendar…';
+ google.script.run.withSuccessHandler(result=>{
+  if(current!==version)return;
+  if(!result||!result.ok){status.textContent=errors[result&&result.code]||'No pudimos consultar los horarios. Intenta de nuevo.';return;}
+  token=result.token;
+  result.slots.forEach(time=>{const button=document.createElement('button');button.type='button';button.textContent=time;button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>{if(writing)return;selected=time;attempt=null;slots.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));submit.disabled=false;status.textContent='Hora seleccionada: '+time+' (Colombia). Pulsa Reservar esta hora para confirmarla.';});slots.append(button);});
+  status.textContent=result.slots.length?'Elige una hora disponible, en hora de Colombia.':'No quedan horarios para este día. Elige otra fecha.';reportHeight();
+ }).withFailureHandler(()=>{if(current===version)status.textContent='No se pudo consultar la agenda. Vuelve a intentarlo.';}).getAvailableSlots(date.value);
+}
+date.addEventListener('change',load);ui('refresh').addEventListener('click',load);
+function release(){writing=false;date.disabled=false;submit.disabled=false;slots.querySelectorAll('button').forEach(b=>b.disabled=false);}
+submit.addEventListener('click',()=>{
+ if(writing||!selected||!token)return;
+ if(!attempt)attempt={nombre:customer.nombre,servicio:customer.servicio,fecha:date.value,hora:selected,token:token,requestId:crypto.randomUUID(),website:''};
+ writing=true;date.disabled=true;submit.disabled=true;slots.querySelectorAll('button').forEach(b=>b.disabled=true);status.textContent='Registrando tu cita en Google Calendar…';
+ google.script.run.withSuccessHandler(result=>{
+  if(!result||!result.ok){status.textContent=errors[result&&result.code]||'No pudimos confirmar. Reintenta o consulta los horarios.';release();return;}
+  const receipt=result.reservation;
+  if(!receipt||['nombre','servicio','fecha','hora'].some(k=>receipt[k]!==attempt[k])){status.textContent='No se pudo verificar la reserva. Reintenta para comprobarla.';release();return;}
+  ui('picker').hidden=true;ui('intro').hidden=true;ui('success').hidden=false;status.textContent='Tu cita quedó registrada en Google Calendar.';
+  const [y,m,d]=receipt.fecha.split('-'),day=d+'/'+m+'/'+y;
+  ui('receipt').textContent=receipt.nombre+'\n'+receipt.servicio+'\n'+day+' · '+receipt.hora+' (Colombia)\nDuración: 60 minutos.';
+  const message=["Hola, Shili's. Ya completé mi reserva en Google Calendar.",'Nombre completo: '+receipt.nombre+'.','Servicio: '+receipt.servicio+'.','Fecha de la cita: '+day+'.','Hora de la cita: '+receipt.hora+' (Colombia).',customer.mensaje?'Detalles: '+customer.mensaje:'','Les comparto este aviso de mi reserva.'].filter(Boolean).join('\n');
+  ui('whatsapp').href='https://wa.me/573187862277?text='+encodeURIComponent(message);
+  window.top.postMessage({source:'shilis-booking',type:'reserved',nonce:customer.nonce,reservation:receipt},'https://javidez89.github.io');reportHeight();
+ }).withFailureHandler(()=>{status.textContent=errors.UNAVAILABLE;release();}).reserveTime(attempt);
+});
+google.script.url.getLocation(location=>{
+ try{
+  const data=JSON.parse(new URLSearchParams(location.hash||'').get('booking')||'null');
+  if(!data||typeof data.nombre!=='string'||data.nombre.trim().length<3||data.nombre.length>100||typeof data.servicio!=='string'||data.servicio.length>100||typeof data.nonce!=='string')throw new Error();
+  customer={nombre:data.nombre.trim().replace(/\s+/g,' '),servicio:data.servicio,fecha:typeof data.fecha==='string'?data.fecha:'',mensaje:typeof data.mensaje==='string'?data.mensaje.slice(0,500):'',nonce:data.nonce};
+  ui('customer').textContent=customer.nombre;document.title=customer.nombre+' · Reserva Shili’s';ui('service').textContent=customer.servicio;ui('picker').hidden=false;
+  const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Bogota',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const part=type=>parts.find(p=>p.type===type).value;
+  date.min=part('year')+'-'+part('month')+'-'+part('day');
+  const end=new Date(date.min+'T12:00:00Z');end.setUTCDate(end.getUTCDate()+30);date.max=end.toISOString().slice(0,10);
+  date.value=/^\d{4}-\d{2}-\d{2}$/.test(customer.fecha)&&customer.fecha>=date.min&&customer.fecha<=date.max?customer.fecha:date.min;
+  load();reportHeight();
+ }catch(error){status.textContent='Abre este selector desde Agenda tu momento en la web de Shili’s para traer tu nombre y servicio.';ui('intro').hidden=true;}
+});
+</script></body></html>

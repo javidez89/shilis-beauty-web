@@ -97,3 +97,7 @@ El logotipo (`logo-original.webp`) es un **recorte fiel del afiche de referencia
 ## Reservas desde el formulario principal
 
 Agenda tu momento inicia el flujo en las cinco páginas: datos, reserva nativa en Google Calendar y aviso por WhatsApp reutilizando los datos. El cliente debe revisar la fecha y hora que confirmó Google y pulsar Enviar en WhatsApp. La consulta directa por WhatsApp continúa disponible. La integración usa una sola agenda de prueba de 60 minutos, de lunes a viernes 09:00–17:00 Colombia; no representa agendas por profesional. Ver demo-agenda/README.md para límites y funcionamiento.
+
+### Selector de hora v2.5
+
+El segundo paso usa un selector propio alojado en Google: nombre del cliente como título, solo día/hora, sin datos de contacto. El usuario eligió exigir una cuenta de Google. La cita se guarda en la agenda privada dedicada Shili’s · Reservas web y se confirma desde el servidor antes del aviso por WhatsApp. Se mantienen los límites de prueba y la consulta directa por WhatsApp. Ver integrations/google-calendar/README.md.

@@ -1,3 +1,13 @@
+# v2.5.0 / 2026-11-01
+
+- Selector propio conectado a una agenda privada dedicada de Google Calendar.
+- Acceso restringido a personas con cuenta de Google, según la elección explícita del usuario.
+- El segundo paso muestra el nombre del cliente y solo solicita día y hora; no pide datos de contacto.
+- La cita se crea con el nombre del cliente como título, sin invitados ni correos.
+- Se comprueban cruces y se bloquea el turno en el servidor; reintentos idempotentes.
+- WhatsApp se prepara únicamente después de recibir la confirmación real del registro.
+- Hora preferida continúa eliminada del primer paso.
+
 # v2.4.1 / 2026-11-01
 
 - Se elimina Hora preferida del primer paso; se elige la hora únicamente al reservar.

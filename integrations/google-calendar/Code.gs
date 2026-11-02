@@ -61,14 +61,14 @@ function failure_(error) {
   const known = ['INVALID_DATE','OUTSIDE_WINDOW','INVALID_REQUEST','SLOT_TAKEN','TOKEN_EXPIRED','BUSY','SETUP_REQUIRED'];
   return {ok:false,code:known.indexOf(code)>=0?code:'UNAVAILABLE'};
 }
-function doGet(e) {
+function getAvailableSlots(date) {
   try {
-    const date=String(e.parameter.date||'');
+    date=String(date||'');
     const slots=times_(date,events_(date),Date.now());
     const token=Utilities.getUuid();
     CacheService.getScriptCache().put('slot:'+token,JSON.stringify({date:date}),600);
-    return output_({ok:true,date:date,slots:slots,token:token,zone:SETTINGS.zone});
-  } catch(error) { return output_(failure_(error)); }
+    return {ok:true,date:date,slots:slots,token:token,zone:SETTINGS.zone};
+  } catch(error) { return failure_(error); }
 }
 function booking_(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('INVALID_REQUEST');
@@ -94,23 +94,27 @@ function receipt_(data,event) {
   if (event.status!=='confirmed' || event.summary!==data.name || !event.start || new Date(event.start.dateTime).getTime()!==new Date(expected).getTime() || !event.extendedProperties || !event.extendedProperties.private || event.extendedProperties.private.service!==data.service) throw new Error('INVALID_REQUEST');
   return {ok:true,reservation:{nombre:data.name,servicio:data.service,fecha:data.date,hora:data.time}};
 }
-function doPost(e) {
+function reserveTime(input) {
   let lock;
   try {
-    const body=e.postData && e.postData.contents || '';
-    if (body.length>4096) throw new Error('INVALID_REQUEST');
-    const data=booking_(JSON.parse(body));
+    if (JSON.stringify(input).length>4096) throw new Error('INVALID_REQUEST');
+    const data=booking_(input);
     lock=LockService.getScriptLock();
     if (!lock.tryLock(20000)) throw new Error('BUSY');
     const previous=prior_(data.eventId);
-    if (previous) return output_(receipt_(data,previous));
+    if (previous) return receipt_(data,previous);
     const cache=CacheService.getScriptCache(), raw=cache.get('slot:'+data.token);
     if (!raw || JSON.parse(raw).date!==data.date) throw new Error('TOKEN_EXPIRED');
     if (times_(data.date,events_(data.date),Date.now()).indexOf(data.time)<0) throw new Error('SLOT_TAKEN');
     const start=new Date(data.date+'T'+data.time+':00'+SETTINGS.offset);
     const event=Calendar.Events.insert({id:data.eventId,summary:data.name,description:'Servicio: '+data.service+'\nReserva desde la web de Shili’s.',visibility:'private',transparency:'opaque',start:{dateTime:start.toISOString(),timeZone:SETTINGS.zone},end:{dateTime:new Date(start.getTime()+3600000).toISOString(),timeZone:SETTINGS.zone},extendedProperties:{private:{service:data.service,source:'shilis-web'}}},calendarId_());
     cache.remove('slot:'+data.token);
-    return output_(receipt_(data,event));
-  } catch(error) { return output_(failure_(error)); }
+    return receipt_(data,event);
+  } catch(error) { return failure_(error); }
   finally { if(lock && lock.hasLock()) lock.releaseLock(); }
+}
+
+/** Access is enforced by the deployment: Google-account holders only. */
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Picker').setTitle('Reserva tu hora · Shili’s').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
