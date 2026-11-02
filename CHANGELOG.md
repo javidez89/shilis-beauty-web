@@ -1,3 +1,12 @@
+# v2.4.0 / 2026-11-01
+
+- El formulario Agenda tu momento sigue siendo la entrada principal en las cinco páginas y la demo.
+- El mismo diálogo guía los datos, la reserva nativa en Google y el aviso por WhatsApp.
+- Se reutilizan nombre, servicio, preferencias y detalles sin volver a escribirlos.
+- Antes del aviso se exige revisar fecha y hora confirmadas y marcar la confirmación de Google.
+- Se mantiene la consulta directa por WhatsApp como alternativa sin crear eventos.
+- Una sola agenda de prueba, con horarios y duraciones de prueba visibles.
+
 # v2.3.1 / 2026-11-01
 
 - Se mantiene la reserva automática en Google Calendar.
