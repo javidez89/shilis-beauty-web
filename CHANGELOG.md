@@ -1,3 +1,10 @@
+# v2.3.1 / 2026-11-01
+
+- Se mantiene la reserva automática en Google Calendar.
+- Se añade un segundo paso para preparar el aviso por WhatsApp al salón.
+- Se requiere confirmación explícita del cliente de que Google confirmó su cita.
+- El mensaje se envía solo cuando el cliente pulsa Enviar en WhatsApp.
+
 # v2.3.0 / 2026-11-01
 
 - La demo integra una página real de reservas de Google Calendar.
