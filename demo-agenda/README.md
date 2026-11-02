@@ -1,16 +1,11 @@
-# Demo de agenda Shili’s
+# Reserva automática conectada a Google Calendar
 
-Esta ruta es una prueba estática pública, sin autenticación. No usar para datos reales. Los registros se guardan exclusivamente en localStorage del navegador, no en el repositorio ni en un servidor. No hay recepción de WhatsApp ni sincronización entre dispositivos.
+La ruta principal /demo-agenda/ integra la página nativa de reservas de Google Calendar. Ya no guarda la reserva en localStorage ni abre borradores de eventos. El cliente completa el formulario de Google; Google confirma y crea el evento.
 
-## Prueba
-0. Escribir la cuenta de Google en el formulario: se guarda solo en el navegador, no en el repositorio.
-1. Preparar la solicitud A: reserva su horario en la demo y abre un borrador de Google Calendar.
-2. Revisar la cuenta y el calendario destino. Solo pulsar Guardar si se desea crear un evento real de prueba.
-3. Regresar y marcar explícitamente que se guardó. La demo no puede verificarlo.
-4. Preparar B: detecta el cruce del mismo profesional. Ajustar la hora o el profesional antes de continuar.
-5. Registrar otra solicitud con un teléfono propio si se quiere preparar una respuesta. WhatsApp no envía nada automáticamente.
+Configuración de prueba elegida por el usuario: 60 minutos, lunes a viernes, 09:00 a 17:00 America/Bogota. Una sola agenda de prueba; no sustituye las agendas separadas por profesional ni las duraciones reales de cada servicio.
 
-Restablecer ejemplos o descartar solicitudes no elimina eventos de Google. Borrarlos manualmente en Calendar si se guardaron. Reabrir el borrador y volver a guardarlo puede duplicar el evento.
+Enlace público obtenido del diálogo Compartir de Google: https://calendar.app.google/B7DNqffJtbve3NhH8
 
-## Antes de producción
-Requiere acceso autenticado para personal, base de datos compartida, autorización OAuth de Google, lectura real de ocupación y escritura de eventos, control transaccional de cruces y reglas de duración validadas. Para mensajes automáticos, integración autorizada con WhatsApp Business Platform. Nunca guardar secretos en archivos estáticos.
+El simulador anterior se conserva en simulador.html y sigue siendo exclusivamente local. Ninguna credencial ni dirección privada de la cuenta está guardada en los archivos del sitio.
+
+La web principal conserva su proceso existente hasta validar esta prueba. No hay integración de WhatsApp ni proyecto Supabase en este alcance.

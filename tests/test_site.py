@@ -55,8 +55,11 @@ print('All 7 public HTML routes share the current brand system.')
 demo = ROOT/'demo-agenda/index.html'
 demo_source = demo.read_text(encoding='utf-8-sig')
 assert 'noindex,nofollow' in demo_source
-assert 'solo en este navegador' in demo_source
+assert 'calendar.google.com/calendar/appointments/schedules/' in demo_source
+assert 'calendar.app.google/B7DNqffJtbve3NhH8' in demo_source
+assert 'agenda.js' not in demo_source
+assert '60 minutos' in demo_source
 inspector = Inspector(); inspector.feed(demo_source)
 for ref in inspector.refs:
     assert (demo.parent/ref).exists(), f'Demo missing asset: {ref}'
-print('PASS independent demo route, disclosure and local assets.')
+print('PASS connected Calendar demo, test disclosure and assets.')

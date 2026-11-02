@@ -1,3 +1,10 @@
+# v2.3.0 / 2026-11-01
+
+- La demo integra una página real de reservas de Google Calendar.
+- Configuración de prueba aprobada: citas de 60 minutos, lunes a viernes 9:00-17:00 Colombia.
+- Registro automático y disponibilidad administrados por Google.
+- Simulador local anterior conservado por separado; no se modifican las reservas de la web principal.
+
 # v2.2.0 / 2026-11-01
 
 - Demo independiente de agenda en /demo-agenda/.
