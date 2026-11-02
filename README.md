@@ -18,7 +18,7 @@ Sitio estático **responsive y multipágina**, preparado para desplegar con **Gi
 - `servicios.html` — servicios y consultas específicas
 - `galeria.html` — imágenes de referencia del afiche; **no son portafolio de trabajos comprobados**
 - `nosotros.html` — identidad y presentación
-- `contacto.html` — información, formulario con Google Calendar y WhatsApp, y ubicación
+- `contacto.html` — información, formulario de consulta hacia WhatsApp y ubicación
 - `docs/manual-marca.html` + `docs/manual-marca.pdf` — manual de identidad visual
 
 ## Datos verificados en el afiche y proporcionados por el usuario
@@ -94,10 +94,6 @@ El logotipo (`logo-original.webp`) es un **recorte fiel del afiche de referencia
 
 `MAJOR.MINOR.PATCH`. Trabajar con ramas `feature/*`, mensajes de commit claros, PR y revisión antes de fusionar a `main`. El despliegue automático se activa únicamente desde `main`.
 
-## Reservas desde el formulario principal
+## Consultas desde Agenda tu momento
 
-Agenda tu momento inicia el flujo en las cinco páginas: datos, reserva nativa en Google Calendar y aviso por WhatsApp reutilizando los datos. El cliente debe revisar la fecha y hora que confirmó Google y pulsar Enviar en WhatsApp. La consulta directa por WhatsApp continúa disponible. La integración usa una sola agenda de prueba de 60 minutos, de lunes a viernes 09:00–17:00 Colombia; no representa agendas por profesional. Ver demo-agenda/README.md para límites y funcionamiento.
-
-### Selector de hora v2.5
-
-El segundo paso usa un selector propio alojado en Google: nombre del cliente como título, solo día/hora, sin datos de contacto. El usuario eligió exigir una cuenta de Google. La cita se guarda en la agenda privada dedicada Shili’s · Reservas web y se confirma desde el servidor antes del aviso por WhatsApp. Se mantienen los límites de prueba y la consulta directa por WhatsApp. Ver integrations/google-calendar/README.md.
+Se restaura el formulario original en las cinco páginas: nombre, servicio, fecha preferida opcional, hora preferida y detalle opcional. Abre WhatsApp con la solicitud; el cliente debe pulsar Enviar y el salón confirma disponibilidad y turno directamente. No guarda información ni registra eventos en Google Calendar. Las antiguas rutas de demo y simulador redirigen a este formulario.

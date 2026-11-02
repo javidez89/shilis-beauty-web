@@ -71,7 +71,6 @@
       if (button?.dataset.service) dialog.querySelector('#servicio').value = button.dataset.service;
       nav?.classList.remove('is-open');
       toggle?.setAttribute('aria-expanded', 'false');
-      dialog.dispatchEvent(new Event('booking:open'));
       if (!dialog.open) dialog.showModal();
       document.body.classList.add('booking-open');
     };

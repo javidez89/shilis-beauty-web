@@ -42,7 +42,7 @@ print('All static-site smoke tests passed.')
 # Every public HTML route uses the same versioned brand stylesheet and silver logo.
 for name in PAGES + ['404.html', 'docs/manual-marca.html']:
     source = (ROOT/name).read_text(encoding='utf-8')
-    assert 'styles.css?v=2.5.0' in source, f'{name}: inconsistent brand stylesheet'
+    assert 'styles.css?v=2.6.0' in source, f'{name}: inconsistent brand stylesheet'
     assert 'identity.css' not in source, f'{name}: duplicate legacy theme'
     assert 'logo-plata.webp' in source, f'{name}: inconsistent logo'
     inspector = Inspector(); inspector.feed(source)
@@ -51,41 +51,26 @@ for name in PAGES + ['404.html', 'docs/manual-marca.html']:
         assert ((ROOT/name).parent/ref).exists(), f'{name}: missing resource {ref}'
 print('All 7 public HTML routes share the current brand system.')
 
-# Demo route must remain explicitly separate and carry all of its assets.
-demo = ROOT/'demo-agenda/index.html'
-demo_source = demo.read_text(encoding='utf-8-sig')
-assert 'noindex,nofollow' in demo_source
-assert 'data-booking-frame' in demo_source
-assert 'calendar.google.com/calendar/appointments/schedules/' in (ROOT/'assets/js/booking.js').read_text(encoding='utf-8')
-assert 'calendar.app.google/B7DNqffJtbve3NhH8' in demo_source
-assert 'agenda.js' not in demo_source
-assert '60 minutos' in demo_source
-inspector = Inspector(); inspector.feed(demo_source)
-for ref in inspector.refs:
-    assert (demo.parent/ref).exists(), f'Demo missing asset: {ref}'
-print('PASS connected Calendar demo, test disclosure and assets.')
-
-# Every primary booking entry uses the same complete flow and no duplicate submit handler.
+# Same original WhatsApp form on every main page, with no Calendar integration.
 import hashlib
 fragments=[]
-for name in PAGES+['demo-agenda/index.html']:
-    text=(ROOT/name).read_text(encoding='utf-8')
-    assert 'booking.js?v=2.5.0' in text,name
-    block=re.search(r'<dialog class="booking-dialog".*?</dialog>',text,re.S).group()
+for name in PAGES:
+    source=(ROOT/name).read_text(encoding='utf-8')
+    assert 'booking.js?v=2.6.0' in source,name
+    block=re.search(r'<dialog class="booking-dialog".*?</dialog>',source,re.S).group()
     fragments.append(hashlib.sha256(block.encode()).hexdigest())
-    p=Inspector();p.feed(text)
-    ids=re.findall(r'\bid="([^"]+)"',text)
-    assert len(ids)==len(set(ids)),f'{name}: duplicate HTML IDs'
-    assert 'data-booking-frame' in block and 'data-booking-confirm' in block
-    assert 'Solo consultar por WhatsApp' in block
+    ids=re.findall(r'\bid="([^"]+)"',source)
+    assert len(ids)==len(set(ids)),f'{name}: duplicate IDs'
+    assert 'Enviar consulta por WhatsApp' in block
+    assert '>Hora preferida *<' in block
+    for retired in ['data-booking-frame','agenda-config','calendar-picker','Calendar','script.google.com','calendar.app.google']:
+        assert retired not in source,f'{name}: retired integration {retired}'
 assert len(set(fragments))==1,'Booking form differs between pages'
-assert 'wa.me' not in (ROOT/'assets/js/main.js').read_text(encoding='utf-8'),'Duplicate booking handler'
-print('PASS same primary dialog on all six routes, unique IDs and single booking controller.')
-
-# The preferred-time field must stay disabled and hidden on first render, even on deep links.
-for name in PAGES+['demo-agenda/index.html']:
-    text=(ROOT/name).read_text(encoding='utf-8')
-    assert 'data-booking-time hidden' in text
-    assert 'id="hora" disabled' in text
-    assert '>Hora preferida *<' not in text
-print('PASS no preferred-time input in the first booking step.')
+for name in ['demo-agenda/index.html','demo-agenda/simulador.html']:
+    source=(ROOT/name).read_text(encoding='utf-8')
+    assert '0;url=../index.html#agenda-tu-momento' in source
+    assert '<iframe' not in source
+    inspector=Inspector();inspector.feed(source)
+    for ref in inspector.refs:assert ((ROOT/name).parent/ref).exists(),f'{name}: missing {ref}'
+assert 'Google' not in (ROOT/'assets/js/booking.js').read_text(encoding='utf-8')
+print('PASS original WhatsApp form on five pages, old routes redirect, Calendar integration removed.')

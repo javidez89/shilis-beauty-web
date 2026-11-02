@@ -1,3 +1,11 @@
+# v2.6.0 / 2026-11-01
+
+- Se retira la integración con Google Calendar por solicitud del usuario.
+- Se restaura el formulario original Agenda tu momento, con solicitud directa por WhatsApp.
+- El salón vuelve a confirmar fecha, hora y disponibilidad directamente con el cliente.
+- Las rutas antiguas de agenda y simulador redirigen al formulario principal.
+- Se retiran del sitio los conectores, selector y código de integración.
+
 # v2.5.0 / 2026-11-01
 
 - Selector propio conectado a una agenda privada dedicada de Google Calendar.
