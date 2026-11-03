@@ -42,7 +42,7 @@ print('All static-site smoke tests passed.')
 # Every public HTML route uses the same versioned brand stylesheet and official logo.
 for name in PAGES + ['404.html', 'docs/manual-marca.html']:
     source = (ROOT/name).read_text(encoding='utf-8')
-    assert 'styles.css?v=2.6.2' in source, f'{name}: inconsistent brand stylesheet'
+    assert 'styles.css?v=2.7.0' in source, f'{name}: inconsistent brand stylesheet'
     assert 'identity.css' not in source, f'{name}: duplicate legacy theme'
     assert 'logo-oficial.png' in source, f'{name}: inconsistent logo'
     inspector = Inspector(); inspector.feed(source)

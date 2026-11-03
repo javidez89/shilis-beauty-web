@@ -1,3 +1,7 @@
+## Identidad web 2026
+
+Todas las páginas comparten la paleta del manual: berenjena #100817, blanco cálido #F7F6F2, fucsia #B10F68, plata #BFC2C8 y dorado #D2AE4E para detalles. Arial estructura los textos de apoyo. El logo se mantiene completo; no se recolorea ni se recorta. El fucsia identifica las acciones, y el dorado destaca navegación y detalles sobre fondos oscuros.
+
 ## Logo oficial vigente
 
 Desde el 3 de noviembre de 2026, el logo aprobado es `assets/img/logo-oficial.png`. La versión refinada vigente mide 1774 × 887 px y tiene fondo oscuro incorporado. Se utiliza completa en todas las páginas. Sustituye al logo plata anterior en las nuevas aplicaciones. La guía vigente está en `docs/manual-marca.pdf`; la página `docs/manual-marca.html` permite descargar logo y manual.

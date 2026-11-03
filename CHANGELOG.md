@@ -1,3 +1,10 @@
+# v2.7.0 / 2026-11-03
+
+- Identidad 2026 aplicada a todas las páginas: berenjena, blanco cálido, fucsia, plata y detalles dorados.
+- Encabezado, navegación, carrusel, botones, tarjetas, reservas y pie de página comparten el mismo sistema visual.
+- Vista previa al compartir y color del navegador alineados con la marca.
+- Se conserva el logo completo y el flujo de consulta por WhatsApp.
+
 # v2.6.2 / 2026-11-03
 
 - Logo PNG refinado a partir de la referencia aprobada, con fondo oscuro y proporción 2:1.
