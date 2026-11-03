@@ -326,3 +326,7 @@ h1,h2,h3{font-weight:700;letter-spacing:-.035em}h1,h2{line-height:1.15}em{font-s
 @media(max-width:800px){.nav-row{min-height:126px}.primary-nav{top:100%}}
 @media(max-width:600px){.nav-row{min-height:120px}}
 @media(max-width:360px){.nav-row{min-height:104px}}
+
+/* Brand guide and downloadable assets, November 2026. */
+:root{--brand-plum:#100817;--brand-gold:#d2ae4e;--brand-light-pink:#e432b4}
+.brand-preview{background:var(--brand-plum);max-width:900px;margin:28px 0;padding:24px;border:1px solid #35243d;border-radius:16px}.brand-preview img{display:block;width:100%;height:auto;object-fit:contain}.brand-palette{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;margin-top:28px}.brand-palette span{display:block;height:80px;border-radius:10px;border:1px solid var(--line)}.brand-palette strong,.brand-palette small{display:block;margin-top:12px}.brand-palette small{margin-top:4px;color:var(--muted)}.brand-guidelines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:28px 0}.brand-guidelines h3{font-size:1.2rem}.brand-guidelines p{font-size:.95rem}@media(max-width:800px){.brand-palette{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.brand-preview{padding:10px}.brand-palette{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-guidelines{grid-template-columns:1fr;gap:10px}}

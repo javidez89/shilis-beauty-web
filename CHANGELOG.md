@@ -1,3 +1,9 @@
+# v2.6.2 / 2026-11-03
+
+- Logo PNG refinado a partir de la referencia aprobada, con fondo oscuro y proporción 2:1.
+- Manual vigente de identidad de marca de 12 páginas: estrategia, color, voz, aplicaciones y producción.
+- Página de identidad con paleta, reglas de uso y descargas del logo y manual.
+
 # v2.6.1 / 2026-11-03
 
 - Nuevo logo oficial aprobado por el usuario, conservado completo y sin modificaciones.

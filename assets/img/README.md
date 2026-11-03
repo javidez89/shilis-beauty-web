@@ -1,4 +1,8 @@
-# Logo oficial vigente
+# Logo principal refinado / 2026.11
+
+`logo-oficial.png` es la versión PNG refinada de 1774 × 887 px, RGB, con fondo oscuro incorporado. Se reconstruyó mediante la herramienta integrada de imagen a partir de la referencia aprobada. Conserva los elementos y textos, con trazos regenerados; no es una vectorización idéntica ni un archivo transparente. Se acompaña del manual actualizado en `docs/manual-marca.pdf`.
+
+## Referencia aprobada anterior
 
 Desde el 3 de noviembre de 2026 se utiliza `logo-oficial.png`, proporcionado y aprobado por el usuario en «Renovación de belleza Shili’s.png». Se conserva el archivo completo, sin recolorear, recortar ni cambiar sus proporciones (689 × 340 px). Incluye corona dorada, silueta femenina, nombre, descriptor y lema.
 
