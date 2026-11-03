@@ -10,11 +10,11 @@ La documentación del proveedor actualizada el 26 de octubre de 2026 indica que,
 
 La versión del sitio para el nuevo dominio se generó y se comprobó sin cambiar la publicación actual: las cinco páginas, las canónicas, los datos estructurados, las imágenes para compartir, sitemap, robots, página 404 y WhatsApp apuntan correctamente al destino preparado.
 
-Las sesiones de Latinoamérica Hosting y GitHub no estaban abiertas en el navegador del chat; se dejaron ambas pantallas de acceso preparadas. No se solicitaron contraseñas ni códigos por el chat. No se modificaron registros DNS, servidores de nombres ni la dirección publicada en GitHub.
+Después de que el usuario inició sesión, se habilitó la gestión DNS por $0,00/año. Se comprobó que la zona solo tenía sus registros NS, sin correo ni otros registros configurados. Se publicaron los registros de abajo y se cambió la delegación a los cuatro servidores Orderbox del proveedor. Google Public DNS ya devolvió las cuatro IP de GitHub y los dos TXT correctos. GitHub confirmó la propiedad del dominio y lo asoció a `javidez89/shilis-beauty-web`. Google Search Console verificó automáticamente la propiedad de dominio mediante DNS. La publicación del contenido con la nueva dirección y las comprobaciones finales de HTTPS están en curso.
 
-## Registros previstos
+## Registros publicados
 
-Antes de cambiarlos, revisar la zona existente y conservar los registros de correo y de otros servicios. Los registros siguientes corresponden únicamente a la web y a su verificación en Google.
+Los registros siguientes corresponden a la web y a las verificaciones de propiedad. No fue necesario eliminar registros existentes.
 
 | Tipo | Nombre | Destino o valor |
 | --- | --- | --- |
@@ -24,19 +24,20 @@ Antes de cambiarlos, revisar la zona existente y conservar los registros de corr
 | A | @ | 185.199.111.153 |
 | CNAME | www | javidez89.github.io |
 | TXT | @ | google-site-verification=hhfhZ6P_CBT7mZBUCMy5mBpCDLKlwxWVznf6MGP9nlA |
+| TXT | _github-pages-challenge-javidez89 | bb7e5934ad70cd8ce9127154e6573e |
 
-En los destinos DNS no escribir `https://` ni `/shilis-beauty-web/`. El nombre `@` puede representarse como el dominio completo según el panel. No crear un CNAME en la raíz ni registros comodín. Usar el TTL predeterminado del proveedor, o 300 segundos si permite configurarlo.
+En los destinos DNS no escribir `https://` ni `/shilis-beauty-web/`. El nombre `@` puede representarse como el dominio completo según el panel. No crear un CNAME en la raíz ni registros comodín. El proveedor exige un TTL mínimo de 14400 segundos; se usó ese valor para A, CNAME y TXT.
 
-Antes de apuntar los registros web, verificar el dominio en los ajustes personales de Pages de GitHub y asociar `shilispeluqueria.com` al repositorio `javidez89/shilis-beauty-web`. GitHub genera un TXT adicional de verificación que aún no se ha obtenido porque falta iniciar sesión. Conservarlo una vez añadido. La web usa GitHub Actions, por lo que GitHub no requiere un archivo CNAME en el artefacto.
+GitHub confirmó la verificación en los ajustes personales de Pages de la cuenta propietaria. Mantener los TXT de GitHub y Google para conservar ambas verificaciones. La web usa GitHub Actions, por lo que GitHub no requiere un archivo CNAME en el artefacto.
 
 ## Orden para activar
 
-1. Abrir el dominio en el proveedor y comprobar si usa administración DNS de dominio o un servicio de hosting ya contratado. Activar la zona correspondiente si no existe. No contratar un plan para este paso sin consultar el costo.
-2. Obtener y publicar el TXT de verificación de GitHub; verificarlo en la cuenta propietaria. Añadir también el TXT de Google indicado arriba.
-3. Coordinar la asociación del dominio al repositorio con los registros A y www para completar el cambio. No dejar el sitio anterior redirigiendo a un dominio que no funciona durante un período prolongado.
+1. Gestión DNS activada en el dominio, sin contratar hosting adicional.
+2. Registros A, www y TXT publicados; verificaciones de GitHub y Google completadas.
+3. Dominio asociado al repositorio. Completar el despliegue del contenido y confirmar que los enlaces anteriores llevan a las páginas equivalentes.
 4. El flujo de publicación toma `SITE_URL` de `actions/configure-pages` mediante `base_url`: cuando GitHub tenga asociado el dominio, el siguiente despliegue usará automáticamente esa dirección en el SEO. Volver a ejecutar la publicación después de guardar el dominio si GitHub no dispara un despliegue.
 5. Comprobar resolución de raíz y www, certificado válido y las cinco páginas. Activar Enforce HTTPS cuando GitHub lo habilite. Comprobar que los enlaces anteriores de GitHub llevan a las páginas equivalentes del dominio nuevo.
-6. Completar la propiedad de dominio de Google Search Console, preparada pero todavía sin verificar. Enviar https://shilispeluqueria.com/sitemap.xml y solicitar actualización de la página principal. La propiedad anterior de GitHub debe conservarse.
+6. Propiedad de dominio de Google Search Console ya verificada. Enviar https://shilispeluqueria.com/sitemap.xml cuando el despliegue responda y solicitar actualización de la página principal. La propiedad anterior de GitHub debe conservarse.
 7. Usar el nuevo dominio en la ficha de Google Maps cuando se complete su alta; sigue pendiente que el usuario ajuste el marcador exacto del local. No cambiar los permisos de la agenda privada futura ni activar Google Calendar.
 
 Referencias: [dominios en GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [verificación de GitHub](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages), [DNS en Latinoamérica Hosting](https://soporte.latinoamericahosting.com/es/category/area-de-clientes-1v7w59e/).

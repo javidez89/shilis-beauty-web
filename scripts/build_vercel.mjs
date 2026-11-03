@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import {root, pages, applySeo, legacyBase, normalizeBase} from './seo.mjs';
+import {root, pages, applySeo, productionBase, normalizeBase} from './seo.mjs';
 
 // Explicit publication list keeps source files, private settings and tests out of hosting.
 const output = path.join(root, 'dist');
@@ -11,7 +11,7 @@ for (const file of [...Object.keys(pages), '404.html', 'assets', 'demo-agenda'])
 fs.mkdirSync(path.join(output, 'docs'));
 for (const file of ['manual-marca.html', 'manual-marca.pdf']) fs.copyFileSync(path.join(root, 'docs', file), path.join(output, 'docs', file));
 if (process.env.VERCEL === '1' && !process.env.SITE_URL && !process.env.VERCEL_PROJECT_PRODUCTION_URL) throw new Error('Missing stable production URL. Enable Vercel system environment variables or set SITE_URL.');
-const base = normalizeBase(process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : legacyBase));
+const base = normalizeBase(process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : productionBase));
 const preview = process.env.VERCEL_ENV === 'preview';
 applySeo(output, {base, preview});
 const errorPath = path.join(output, '404.html');

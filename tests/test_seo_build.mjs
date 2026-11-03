@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {root, pages, legacyBase} from '../scripts/seo.mjs';
+import {root, pages, legacyBase, productionBase} from '../scripts/seo.mjs';
 const output = path.join(root, 'dist');
 const build = env => execFileSync(process.execPath, ['scripts/build_vercel.mjs'], {cwd: root, env: {...process.env, SITE_URL: '', VERCEL: '', VERCEL_ENV: '', VERCEL_PROJECT_PRODUCTION_URL: '', ...env}, encoding: 'utf8'});
 const base = 'https://shilis-seo-test.vercel.app/';
@@ -53,5 +53,7 @@ for (const file of Object.keys(pages)) {
 assert(read('robots.txt').includes('Sitemap: https://shilispeluqueria.com/sitemap.xml'));
 assert(read('404.html').includes('<base href="https://shilispeluqueria.com/">'));
 build({});
+assert(read('index.html').includes(`<link rel="canonical" href="${productionBase}">`));
+build({SITE_URL: legacyBase});
 assert(read('index.html').includes(`<link rel="canonical" href="${legacyBase}">`));
 console.log('PASS: stable production URLs, local business data, 14 service anchors, preview noindex and publication boundaries.');

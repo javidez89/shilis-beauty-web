@@ -7,7 +7,7 @@ Datos confirmados por la propietaria del sitio el 3 de noviembre de 2026:
 - Referencia: junto al restaurante Yolis.
 - Teléfono y WhatsApp: +57 318 786 2277.
 - Atención presencial: todos los días, 09:00–19:00, hora de Colombia.
-- Dirección web vigente: https://javidez89.github.io/shilis-beauty-web/ . El usuario decidió mantener GitHub Pages el 3 de noviembre de 2026, sin contratar Vercel Pro. Dominio propio pendiente.
+- Dominio propio registrado y asociado a GitHub Pages: https://shilispeluqueria.com/ . El usuario decidió mantener GitHub Pages el 3 de noviembre de 2026, sin contratar Vercel Pro. La dirección anterior es https://javidez89.github.io/shilis-beauty-web/ . Ver los detalles de conexión en `DOMINIO-SHILIS.md`.
 
 ## Implementado en la web
 

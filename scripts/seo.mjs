@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const legacyBase = 'https://javidez89.github.io/shilis-beauty-web/';
+export const productionBase = 'https://shilispeluqueria.com/';
 export const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Shili’s, Avenida Medina 8 # 7-29, Mesitas del Colegio, Cundinamarca, Colombia');
 export const pages = {
   'index.html': ['Peluquería en Mesitas del Colegio | Shili’s', 'Shili’s Alta Peluquería y Belleza en Mesitas del Colegio. Cabello, uñas y mirada en Avenida Medina 8 # 7-29. Todos los días, 9 a. m.–7 p. m.'],
@@ -41,7 +42,7 @@ function graph(base, file, source) {
   }
   return {'@context': 'https://schema.org', '@graph': nodes};
 }
-export function applySeo(directory, {base = legacyBase, preview = false} = {}) {
+export function applySeo(directory, {base = productionBase, preview = false} = {}) {
   base = normalizeBase(base);
   for (const [file, [title, description]] of Object.entries(pages)) {
     const target = path.join(directory, file);
@@ -61,4 +62,4 @@ export function applySeo(directory, {base = legacyBase, preview = false} = {}) {
   fs.writeFileSync(path.join(directory, 'robots.txt'), preview ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${base}sitemap.xml\n`);
   return base;
 }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log('SEO generated for ' + applySeo(root, {base: process.env.SITE_URL || legacyBase}));
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log('SEO generated for ' + applySeo(root, {base: process.env.SITE_URL || productionBase}));
