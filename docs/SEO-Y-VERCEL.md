@@ -25,12 +25,24 @@ El generador toma la URL estable de `VERCEL_PROJECT_PRODUCTION_URL`, nunca la di
 
 La configuración de Vercel queda preparada para un traslado futuro, si el usuario lo decide. El plan Hobby se limita a uso personal no comercial; la cotización revisada para Pro fue US$20 al mes más impuestos y posibles consumos. El usuario rechazó ese costo y mantiene el alojamiento actual. No se ha contratado ni cobrado un plan de Vercel.
 
-## Al confirmar la dirección de producción
+## Registro en Google · 3 de noviembre de 2026
+
+La propiedad de prefijo `https://javidez89.github.io/shilis-beauty-web/` quedó verificada en Google Search Console con la cuenta autorizada. Se publicó la etiqueta de verificación en la página principal y debe conservarse.
+
+El sitemap se envió correctamente. El informe mostró inicialmente «No se ha podido obtener». Se revisaron la URL, la respuesta HTTP 200, el tipo XML y el archivo robots; una prueba en tiempo real de Search Console confirmó «Se permite el rastreo: Sí» y «Obtención de página: Correcto» para el sitemap. El envío no significa que Google ya haya procesado sus cinco páginas ni que estas estén indexadas. La página principal ya figuraba indexada y Google aceptó la solicitud de nueva indexación tras los cambios.
+
+En el administrador de Perfil de Negocio de la cuenta no apareció Shili’s. El usuario autorizó expresamente crear la ficha y aceptar sus condiciones. Se ingresaron nombre, categoría Peluquería y dirección confirmada. El alta está en curso: Google propuso un marcador aproximado de El Colegio, que debe ajustar la persona responsable del local antes de continuar. No se da por creada, publicada ni verificada la ficha. Después del marcador, completar teléfono, web, atención diaria 09:00–19:00, descripción, logo y el método de verificación que Google habilite. No afirmar que la dirección quedó verificada a partir de la marca aproximada del mapa.
+
+Descripción preparada para la ficha:
+
+> Shili’s Alta Peluquería y Belleza es un salón en Mesitas del Colegio, Cundinamarca. Ofrecemos cortes, cepillados, mechas, queratinas y peinados para diferentes ocasiones, además de manicure, pedicure, cejas, cejas en henna, pestañas punto a punto y depilación. Un espacio para cuidar tu cabello, tus manos y tu mirada, con el lema «Tu estilo, tu momento». Las citas y la disponibilidad se confirman directamente con el equipo del salón.
+
+## Siguientes pasos y posible traslado futuro
 
 1. Comprobar que inicio, servicios, galería, nosotras y contacto funcionan, así como WhatsApp, mapa y página 404.
 2. Verificar que sitemap, canónicas y datos del salón usan exactamente la nueva dirección. No cambiar la canónica del sitio vigente antes de que la nueva web esté funcionando.
 3. Configurar la migración de los enlaces antiguos de GitHub Pages a sus equivalentes. GitHub Pages no admite redirecciones HTTP permanentes propias; usar las alternativas documentadas por Google cuando no sea posible configurar el servidor. Mantener los enlaces y QR antiguos funcionando.
-4. Dar de alta la URL de producción en Google Search Console, completar la verificación de propiedad y enviar `/sitemap.xml`. Solicitar revisión de las páginas principales. Estas acciones requieren acceso de la persona propietaria y no se dan por completadas con el despliegue.
+4. La dirección actual ya está verificada en Search Console y el sitemap está enviado. Si se traslada la web en el futuro, registrar también la nueva dirección y su sitemap. La inspección confirmó que la página principal actual ya está indexada; esto no demuestra que Google haya actualizado todavía su versión almacenada con los cambios de hoy.
 5. Actualizar el Perfil de Empresa de Google existente con el nombre real del salón, teléfono, dirección, horario, enlace web y enlace para citas. Confirmar el pin exacto con la propietaria. Evitar crear una ficha duplicada.
 6. Añadir fotografías reales del salón, mobiliario y trabajos con permiso. Solicitar reseñas honestas a clientas reales, sin inventarlas ni condicionar incentivos a valoraciones positivas.
 7. Revisar mensualmente consultas, clics y páginas indexadas en Search Console; mantener información y contenido actualizados. La publicación no garantiza posiciones ni plazos de indexación.
