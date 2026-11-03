@@ -92,31 +92,35 @@
   }
 })();
 
-/* Renovation announcement: native modal, once per browser tab session. */
+/* A compact notice keeps the page visible; the visitor opens the poster. */
 (() => {
   'use strict';
   const announcement = document.getElementById('novedad-shilis');
   if (!announcement || typeof announcement.showModal !== 'function') return;
   const sessionKey = 'shilis-renovacion-2026-11';
+  const notice = document.querySelector('[data-launch-notice]');
   let opener = null;
   const wasSeen = () => { try { return sessionStorage.getItem(sessionKey) === 'seen'; } catch { return false; } };
+  const dismissNotice = () => {
+    if (notice) notice.hidden = true;
+    try { sessionStorage.setItem(sessionKey, 'seen'); } catch { /* Works without storage. */ }
+  };
   const open = (trigger = null) => {
     if (announcement.open || document.querySelector('dialog[open]')) return;
     opener = trigger;
     announcement.showModal();
     document.body.classList.add('launch-open');
-    try { sessionStorage.setItem(sessionKey, 'seen'); } catch { /* Modal still works without storage. */ }
+    dismissNotice();
   };
   announcement.querySelectorAll('[data-launch-close]').forEach(button => button.addEventListener('click', () => announcement.close()));
   announcement.addEventListener('click', event => { if (event.target === announcement) announcement.close(); });
   announcement.addEventListener('close', () => {
     document.body.classList.remove('launch-open');
-    (opener || document.querySelector('.logo-link'))?.focus({preventScroll:true});
+    const focusTarget = opener?.getClientRects().length ? opener : document.querySelector('.logo-link');
+    focusTarget?.focus({preventScroll:true});
     document.dispatchEvent(new CustomEvent('shilis:launch-closed'));
   });
   document.querySelectorAll('[data-launch-open]').forEach(button => button.addEventListener('click', () => open(button)));
-  const autoOpen = () => { if (location.hash !== '#agenda-tu-momento' && !wasSeen()) open(); };
-  const poster = announcement.querySelector('img');
-  if (poster.complete && poster.naturalWidth) autoOpen();
-  else poster.addEventListener('load', autoOpen, {once:true});
+  notice?.querySelector('[data-notice-close]')?.addEventListener('click', dismissNotice);
+  if (notice && (wasSeen() || location.hash === '#agenda-tu-momento')) notice.hidden = true;
 })();

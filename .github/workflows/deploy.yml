@@ -24,6 +24,8 @@ jobs:
         run: node tests/test_whatsapp_notice.cjs
       - name: Validate internal pages and assets
         run: python3 tests/test_site.py
+      - name: Validate SEO and Vercel production build
+        run: node tests/test_seo_build.mjs
   deploy:
     needs: validate
     environment:
@@ -35,14 +37,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Build sitemap and canonical links
-        env:
-          REPOSITORY: ${{ github.repository }}
-        run: python3 scripts/build_seo.py
+      - name: Build public files and SEO metadata
+        run: node scripts/build_vercel.mjs
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
       - name: Publish
         id: deployment
         uses: actions/deploy-pages@v4

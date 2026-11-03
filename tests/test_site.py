@@ -32,7 +32,7 @@ for name in PAGES:
     for other in PAGES:
         if other!=name:assert other in txt,f'{name} missing nav link {other}'
     assert '318 786 2277' in txt or '573187862277' in txt, name+' missing WhatsApp'
-    assert 'https://maps.app.goo.gl/U5dkvPXNxGehfEHY7' in txt, name+' missing map link'
+    assert 'https://www.google.com/maps/search/?api=1&amp;query=' in txt, name+' missing map link'
     assert 'width=device-width' in txt,name+' missing viewport'
     print('PASS',name,'links/assets:',len(p.refs))
 assert (ROOT/'docs/manual-marca.pdf').exists()
@@ -42,9 +42,9 @@ print('All static-site smoke tests passed.')
 # Every public HTML route uses the same versioned brand stylesheet and official logo.
 for name in PAGES + ['404.html', 'docs/manual-marca.html']:
     source = (ROOT/name).read_text(encoding='utf-8')
-    assert 'styles.css?v=2.8.0' in source, f'{name}: inconsistent brand stylesheet'
+    assert 'styles.css?v=2.9.0' in source, f'{name}: inconsistent brand stylesheet'
     assert 'identity.css' not in source, f'{name}: duplicate legacy theme'
-    assert 'logo-oficial.png' in source, f'{name}: inconsistent logo'
+    assert 'logo-960.webp' in source, f'{name}: inconsistent logo'
     inspector = Inspector(); inspector.feed(source)
     for ref in inspector.refs:
         if ref == '/shilis-beauty-web/': continue
