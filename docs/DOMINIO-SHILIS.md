@@ -10,7 +10,11 @@ La documentación del proveedor actualizada el 26 de octubre de 2026 indica que,
 
 La versión del sitio para el nuevo dominio se generó y se comprobó sin cambiar la publicación actual: las cinco páginas, las canónicas, los datos estructurados, las imágenes para compartir, sitemap, robots, página 404 y WhatsApp apuntan correctamente al destino preparado.
 
-Después de que el usuario inició sesión, se habilitó la gestión DNS por $0,00/año. Se comprobó que la zona solo tenía sus registros NS, sin correo ni otros registros configurados. Se publicaron los registros de abajo y se cambió la delegación a los cuatro servidores Orderbox del proveedor. Google Public DNS ya devolvió las cuatro IP de GitHub y los dos TXT correctos. GitHub confirmó la propiedad del dominio y lo asoció a `javidez89/shilis-beauty-web`. Google Search Console verificó automáticamente la propiedad de dominio mediante DNS. La publicación del contenido con la nueva dirección y las comprobaciones finales de HTTPS están en curso.
+Después de que el usuario inició sesión, se habilitó la gestión DNS por $0,00/año. Se comprobó que la zona solo tenía sus registros NS, sin correo ni otros registros configurados. Se publicaron los registros de abajo y se cambió la delegación a los cuatro servidores Orderbox del proveedor. Google Public DNS devolvió las cuatro IP de GitHub y los dos TXT correctos. GitHub confirmó la propiedad del dominio y lo asoció a `javidez89/shilis-beauty-web`. Google Search Console verificó automáticamente la propiedad de dominio mediante DNS.
+
+La publicación `81895b0` pasó la validación y el despliegue de GitHub Actions. Las cinco páginas responden HTTP 200 con HTTPS válido, su canónica correcta y el enlace a WhatsApp. Se activó Enforce HTTPS. Se verificaron redirecciones HTTP 301 desde HTTP, www y las direcciones anteriores de GitHub a las páginas equivalentes del dominio principal. Una ruta inexistente devuelve HTTP 404 con el diseño del salón. El formulario de citas abre correctamente desde la nueva dirección.
+
+El sitemap nuevo responde HTTP 200 y contiene cinco páginas. Google confirmó su envío y aceptó la solicitud de indexación de https://shilispeluqueria.com/ . El informe inicial del sitemap mostró «No se ha podido obtener»; no se da por finalizada su lectura ni la indexación. La inspección de la página principal ya la identificó como descubierta mediante ese sitemap, y su solicitud posterior de indexación fue aceptada. Conservar la propiedad anterior de GitHub para seguimiento.
 
 ## Registros publicados
 
@@ -34,10 +38,10 @@ GitHub confirmó la verificación en los ajustes personales de Pages de la cuent
 
 1. Gestión DNS activada en el dominio, sin contratar hosting adicional.
 2. Registros A, www y TXT publicados; verificaciones de GitHub y Google completadas.
-3. Dominio asociado al repositorio. Completar el despliegue del contenido y confirmar que los enlaces anteriores llevan a las páginas equivalentes.
+3. Dominio asociado al repositorio; contenido desplegado y enlaces anteriores comprobados.
 4. El flujo de publicación toma `SITE_URL` de `actions/configure-pages` mediante `base_url`: cuando GitHub tenga asociado el dominio, el siguiente despliegue usará automáticamente esa dirección en el SEO. Volver a ejecutar la publicación después de guardar el dominio si GitHub no dispara un despliegue.
-5. Comprobar resolución de raíz y www, certificado válido y las cinco páginas. Activar Enforce HTTPS cuando GitHub lo habilite. Comprobar que los enlaces anteriores de GitHub llevan a las páginas equivalentes del dominio nuevo.
-6. Propiedad de dominio de Google Search Console ya verificada. Enviar https://shilispeluqueria.com/sitemap.xml cuando el despliegue responda y solicitar actualización de la página principal. La propiedad anterior de GitHub debe conservarse.
+5. Resolución de raíz y www, certificado válido, cinco páginas y Enforce HTTPS comprobados.
+6. Propiedad de dominio de Google Search Console verificada; sitemap enviado y solicitud de indexación aceptada. La propiedad anterior de GitHub debe conservarse. El procesamiento de Google continúa.
 7. Usar el nuevo dominio en la ficha de Google Maps cuando se complete su alta; sigue pendiente que el usuario ajuste el marcador exacto del local. No cambiar los permisos de la agenda privada futura ni activar Google Calendar.
 
 Referencias: [dominios en GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [verificación de GitHub](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages), [DNS en Latinoamérica Hosting](https://soporte.latinoamericahosting.com/es/category/area-de-clientes-1v7w59e/).
