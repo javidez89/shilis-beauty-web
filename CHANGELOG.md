@@ -1,3 +1,10 @@
+# v2.6.1 / 2026-11-03
+
+- Nuevo logo oficial aprobado por el usuario, conservado completo y sin modificaciones.
+- Aplicado en encabezados, pies de página e iconos de las páginas de la web.
+- Altura y proporciones adaptadas al formato completo del logo en escritorio y móvil.
+- Identificación de los logos y manual PDF previos como recursos históricos.
+
 # v2.6.0 / 2026-11-01
 
 - Se retira la integración con Google Calendar por solicitud del usuario.

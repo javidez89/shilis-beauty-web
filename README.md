@@ -1,3 +1,7 @@
+## Logo oficial vigente
+
+Desde el 3 de noviembre de 2026, el logo aprobado es `assets/img/logo-oficial.png`. Se utiliza completo y sin modificar en todas las páginas. Sustituye al logo plata anterior en las nuevas aplicaciones. Las versiones previas y el PDF anterior se mantienen como archivo histórico.
+
 # Shili's Alta Peluquería y Belleza ✦
 
 ## Actualización v1.2.0

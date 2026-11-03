@@ -316,3 +316,13 @@ h1,h2,h3{font-weight:700;letter-spacing:-.035em}h1,h2{line-height:1.15}em{font-s
 
 /* Directions: a single action beside a live Google Maps preview. */
 .location-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:stretch}.location-layout .info-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}.location-map{min-width:0;min-height:360px;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}.location-map iframe{display:block;width:100%;height:100%;min-height:360px;border:0}.location-layout .btn{max-width:100%}@media(max-width:700px){.location-layout{grid-template-columns:1fr}.location-map,.location-map iframe{min-height:320px}.location-map iframe{height:320px}}
+
+/* Official logo supplied November 2026: preserve the complete composition. */
+.nav-row{min-height:138px;padding-block:8px}
+.logo-link{flex:none;line-height:0}
+.brand-mark,.footer-logo{height:auto;object-fit:contain;mix-blend-mode:normal;filter:none;border-radius:0}
+.primary-nav{top:100%}
+@media(max-width:1050px){.nav-row{min-height:118px}}
+@media(max-width:800px){.nav-row{min-height:126px}.primary-nav{top:100%}}
+@media(max-width:600px){.nav-row{min-height:120px}}
+@media(max-width:360px){.nav-row{min-height:104px}}

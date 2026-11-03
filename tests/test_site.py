@@ -39,12 +39,12 @@ assert (ROOT/'docs/manual-marca.pdf').exists()
 assert (ROOT/'.github/workflows/deploy.yml').exists()
 print('All static-site smoke tests passed.')
 
-# Every public HTML route uses the same versioned brand stylesheet and silver logo.
+# Every public HTML route uses the same versioned brand stylesheet and official logo.
 for name in PAGES + ['404.html', 'docs/manual-marca.html']:
     source = (ROOT/name).read_text(encoding='utf-8')
-    assert 'styles.css?v=2.6.0' in source, f'{name}: inconsistent brand stylesheet'
+    assert 'styles.css?v=2.6.1' in source, f'{name}: inconsistent brand stylesheet'
     assert 'identity.css' not in source, f'{name}: duplicate legacy theme'
-    assert 'logo-plata.webp' in source, f'{name}: inconsistent logo'
+    assert 'logo-oficial.png' in source, f'{name}: inconsistent logo'
     inspector = Inspector(); inspector.feed(source)
     for ref in inspector.refs:
         if ref == '/shilis-beauty-web/': continue

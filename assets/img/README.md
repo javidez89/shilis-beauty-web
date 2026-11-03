@@ -1,4 +1,10 @@
-# Procedencia de las imágenes
+# Logo oficial vigente
+
+Desde el 3 de noviembre de 2026 se utiliza `logo-oficial.png`, proporcionado y aprobado por el usuario en «Renovación de belleza Shili’s.png». Se conserva el archivo completo, sin recolorear, recortar ni cambiar sus proporciones (689 × 340 px). Incluye corona dorada, silueta femenina, nombre, descriptor y lema.
+
+Este archivo es la referencia oficial para la web y las nuevas piezas de marca. Los logos `logo-plata.webp`, `logo-v2.webp` y `logo-original.webp` son versiones históricas. El antiguo favicon conceptual queda retirado de las páginas.
+
+## Procedencia de los recursos históricos
 
 ## Recursos actuales (v1.4.0)
 
