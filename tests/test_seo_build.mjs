@@ -40,6 +40,18 @@ assert(read('404.html').includes(base + 'assets/'));
 build({VERCEL: '1', VERCEL_ENV: 'preview', VERCEL_PROJECT_PRODUCTION_URL: 'shilis-seo-test.vercel.app'});
 for (const file of [...Object.keys(pages), '404.html', 'docs/manual-marca.html', 'demo-agenda/index.html', 'demo-agenda/simulador.html']) assert(read(file).includes('content="noindex,follow"'), file);
 assert.equal(read('robots.txt'), 'User-agent: *\nDisallow: /\n');
+// GitHub Pages provides its actual custom domain through configure-pages.base_url.
+// A domain migration must update all metadata together, including a root 404 page.
+build({SITE_URL: 'https://shilispeluqueria.com'});
+for (const file of Object.keys(pages)) {
+  const source = read(file);
+  const url = 'https://shilispeluqueria.com/' + (file === 'index.html' ? '' : file);
+  assert(source.includes(`<link rel="canonical" href="${url}">`), file);
+  assert(source.includes(`<meta property="og:url" content="${url}">`), file);
+  assert(!source.includes(legacyBase), file + ' retains the previous origin');
+}
+assert(read('robots.txt').includes('Sitemap: https://shilispeluqueria.com/sitemap.xml'));
+assert(read('404.html').includes('<base href="https://shilispeluqueria.com/">'));
 build({});
 assert(read('index.html').includes(`<link rel="canonical" href="${legacyBase}">`));
 console.log('PASS: stable production URLs, local business data, 14 service anchors, preview noindex and publication boundaries.');

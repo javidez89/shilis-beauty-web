@@ -36,8 +36,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Configure Pages
+        id: pages
         uses: actions/configure-pages@v5
       - name: Build public files and SEO metadata
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
         run: node scripts/build_vercel.mjs
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
