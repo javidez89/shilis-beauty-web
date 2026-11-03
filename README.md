@@ -1,3 +1,9 @@
+## Bienvenida y anuncio de renovación
+
+El carrusel abre con la modelo de `portada-v3.webp`, la frase «BELLEZA, ESTILO Y BIENESTAR PARA TI» y el botón «Agenda tu cita» con el icono de WhatsApp. El botón abre el formulario actual de consulta. Las 14 referencias de servicios siguen a la bienvenida.
+
+El afiche del usuario aparece sobre la página en un modal, una vez por sesión de pestaña. Se cierra con la X, Escape, el fondo o «Conocer la web». El enlace «Ver novedad de Shili’s» del pie permite volver a abrirlo. Una URL con `#agenda-tu-momento` abre directamente las reservas y omite el anuncio. La imagen del afiche se conserva completa y sin modificaciones.
+
 ## Identidad web 2026
 
 Todas las páginas comparten la paleta del manual: berenjena #100817, blanco cálido #F7F6F2, fucsia #B10F68, plata #BFC2C8 y dorado #D2AE4E para detalles. Arial estructura los textos de apoyo. El logo se mantiene completo; no se recolorea ni se recorta. El fucsia identifica las acciones, y el dorado destaca navegación y detalles sobre fondos oscuros.

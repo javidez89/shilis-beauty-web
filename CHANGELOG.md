@@ -1,3 +1,10 @@
+# v2.8.0 / 2026-11-03
+
+- Primera diapositiva con modelo, rostro y cabello visibles, frase Belleza, estilo y bienestar para ti y botón Agenda tu cita con icono de WhatsApp.
+- Se conservan las 14 diapositivas de servicios después de la bienvenida.
+- Afiche de renovación en un modal sobre la página, una vez por sesión, con cierre y reapertura desde el pie.
+- Enlaces directos al formulario de reservas tienen prioridad sobre el anuncio.
+
 # v2.7.0 / 2026-11-03
 
 - Identidad 2026 aplicada a todas las páginas: berenjena, blanco cálido, fucsia, plata y detalles dorados.

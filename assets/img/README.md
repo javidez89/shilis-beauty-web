@@ -1,3 +1,7 @@
+## Anuncio de renovación
+
+`shilis-renovacion-2026.png` es una copia íntegra del afiche proporcionado por el usuario. Se muestra en un anuncio modal, sin editarlo. La apertura de la web usa la modelo de `portada-v3.webp`, una imagen de inspiración existente, sin presentarla como trabajo real del salón.
+
 # Logo principal refinado / 2026.11
 
 `logo-oficial.png` es la versión PNG refinada de 1774 × 887 px, RGB, con fondo oscuro incorporado. Se reconstruyó mediante la herramienta integrada de imagen a partir de la referencia aprobada. Conserva los elementos y textos, con trazos regenerados; no es una vectorización idéntica ni un archivo transparente. Se acompaña del manual actualizado en `docs/manual-marca.pdf`.

@@ -31,7 +31,7 @@
       clearInterval(timer);
       timer = setInterval(() => {
         if (!paused && !document.hidden && !slider.matches(':hover') && !slider.contains(document.activeElement) && !document.querySelector('dialog[open]')) go(index + 1);
-      }, 5000);
+      }, slider.hasAttribute('data-featured-slider') ? 8000 : 5000);
     };
     slider.querySelector('[data-slider-prev]').addEventListener('click', () => { go(index - 1); restart(); });
     slider.querySelector('[data-slider-next]').addEventListener('click', () => { go(index + 1); restart(); });
@@ -47,6 +47,7 @@
     }, { passive: true });
     new ResizeObserver(() => { track.scrollTo({ left: index * track.clientWidth, behavior: 'instant' }); }).observe(track);
     motion.addEventListener('change', () => { paused = motion.matches; render(); });
+    document.addEventListener('shilis:launch-closed', () => { go(0); restart(); });
     render();
     restart();
   });
@@ -89,4 +90,33 @@
     });
     if (location.hash === '#agenda-tu-momento') openBooking();
   }
+})();
+
+/* Renovation announcement: native modal, once per browser tab session. */
+(() => {
+  'use strict';
+  const announcement = document.getElementById('novedad-shilis');
+  if (!announcement || typeof announcement.showModal !== 'function') return;
+  const sessionKey = 'shilis-renovacion-2026-11';
+  let opener = null;
+  const wasSeen = () => { try { return sessionStorage.getItem(sessionKey) === 'seen'; } catch { return false; } };
+  const open = (trigger = null) => {
+    if (announcement.open || document.querySelector('dialog[open]')) return;
+    opener = trigger;
+    announcement.showModal();
+    document.body.classList.add('launch-open');
+    try { sessionStorage.setItem(sessionKey, 'seen'); } catch { /* Modal still works without storage. */ }
+  };
+  announcement.querySelectorAll('[data-launch-close]').forEach(button => button.addEventListener('click', () => announcement.close()));
+  announcement.addEventListener('click', event => { if (event.target === announcement) announcement.close(); });
+  announcement.addEventListener('close', () => {
+    document.body.classList.remove('launch-open');
+    (opener || document.querySelector('.logo-link'))?.focus({preventScroll:true});
+    document.dispatchEvent(new CustomEvent('shilis:launch-closed'));
+  });
+  document.querySelectorAll('[data-launch-open]').forEach(button => button.addEventListener('click', () => open(button)));
+  const autoOpen = () => { if (location.hash !== '#agenda-tu-momento' && !wasSeen()) open(); };
+  const poster = announcement.querySelector('img');
+  if (poster.complete && poster.naturalWidth) autoOpen();
+  else poster.addEventListener('load', autoOpen, {once:true});
 })();
