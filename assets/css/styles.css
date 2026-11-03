@@ -352,3 +352,5 @@ body{background:var(--bg);color:var(--cream)}
 .footer{background:var(--brand-plum);border-top:2px solid var(--brand-gold);color:#f7f6f2}.footer h3{color:var(--brand-gold)}.footer p,.footer li a,.footer-bottom{color:#d9d0dd}.footer .pill{color:#f7f6f2;border-color:#bfc2c866}.footer li a:hover{color:#fff}.footer-bottom{border-color:#44344e}.wa-float{background:var(--brand-plum);color:#fff;border-color:#d2ae4e88;box-shadow:0 4px 16px #10081726}.wa-float:hover{background:var(--rose);border-color:var(--rose)}
 @media(max-width:800px){.primary-nav{background:var(--brand-plum);border-bottom-color:#d2ae4e66}.feature-item+.feature-item{border-color:#44344e}}
 @media(prefers-reduced-motion:reduce){.btn:hover,.service-card:hover{transform:none}}
+
+.primary-nav .btn:hover{color:#fff}
