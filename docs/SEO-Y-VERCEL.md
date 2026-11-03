@@ -7,7 +7,7 @@ Datos confirmados por la propietaria del sitio el 3 de noviembre de 2026:
 - Referencia: junto al restaurante Yolis.
 - Teléfono y WhatsApp: +57 318 786 2277.
 - Atención presencial: todos los días, 09:00–19:00, hora de Colombia.
-- Dirección web solicitada: subdominio de Vercel; dominio propio pendiente.
+- Dirección web vigente: https://javidez89.github.io/shilis-beauty-web/ . El usuario decidió mantener GitHub Pages el 3 de noviembre de 2026, sin contratar Vercel Pro. Dominio propio pendiente.
 
 ## Implementado en la web
 
@@ -23,7 +23,7 @@ Logo con versiones WebP adaptadas a cada pantalla y favicon pequeño. Afiche Web
 
 El generador toma la URL estable de `VERCEL_PROJECT_PRODUCTION_URL`, nunca la dirección temporal de cada despliegue. Si se configura `SITE_URL`, debe ser la dirección principal HTTPS confirmada. Actualiza canónicas, redes sociales, datos estructurados, sitemap y robots juntos. Las vistas previas llevan `noindex`.
 
-El plan Hobby de Vercel se limita a uso personal no comercial. Para esta web de un salón se debe activar un plan comercial antes de publicar allí. La cuenta revisada tiene únicamente el equipo ACADEMIAQA en Hobby. No se ha contratado ni cobrado un plan. Es preferible un equipo separado para Shili’s, para no cambiar la facturación de otros proyectos.
+La configuración de Vercel queda preparada para un traslado futuro, si el usuario lo decide. El plan Hobby se limita a uso personal no comercial; la cotización revisada para Pro fue US$20 al mes más impuestos y posibles consumos. El usuario rechazó ese costo y mantiene el alojamiento actual. No se ha contratado ni cobrado un plan de Vercel.
 
 ## Al confirmar la dirección de producción
 
