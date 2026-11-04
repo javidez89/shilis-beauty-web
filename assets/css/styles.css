@@ -386,4 +386,6 @@ body.launch-open{overflow:hidden}.launch-dialog{position:fixed;inset:0;width:100
 .local-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1080px}
 .local-grid p{max-width:60ch}.local-grid p a{text-decoration:underline;text-underline-offset:3px}
 .footer li{line-height:1.65}
+.contact-followup{margin-top:25px}.gallery-intro{margin-bottom:32px}.service-footer{margin-top:32px}
+.swatch-plum{background:#100817}.swatch-cream{background:#f7f6f2}.swatch-rose{background:#b10f68}.swatch-silver{background:#bfc2c8}.swatch-gold{background:#d2ae4e}.swatch-pink{background:#e432b4}
 @media(max-width:600px){.launch-notice{gap:10px;padding:10px 16px;font-size:.78rem}.local-grid{grid-template-columns:1fr;gap:24px}.page-title{font-size:1.85rem}.launch-notice span{max-width:180px}}

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {secureHtml} from './security.mjs';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const legacyBase = 'https://javidez89.github.io/shilis-beauty-web/';
@@ -58,7 +59,7 @@ export function applySeo(directory, {base = productionBase, preview = false} = {
       .replace(/<meta name="twitter:(title|description|image)"[^>]*>/g, '')
       .replace('</head>', `<meta name="twitter:title" content="${escape(title)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${escape(base)}assets/img/logo-oficial.png"></head>`)
       .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${JSON.stringify(graph(base, file, source)).replaceAll('<', '\\u003c')}</script>`);
-    fs.writeFileSync(target, source);
+    fs.writeFileSync(target, secureHtml(source));
   }
   fs.writeFileSync(path.join(directory, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + Object.keys(pages).map(file => `  <url><loc>${escape(base + (file === 'index.html' ? '' : file))}</loc></url>`).join('\n') + '\n</urlset>\n');
   fs.writeFileSync(path.join(directory, 'robots.txt'), preview ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${base}sitemap.xml\n`);

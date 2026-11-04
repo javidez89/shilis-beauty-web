@@ -45,7 +45,7 @@ print('All static-site smoke tests passed.')
 # Every public HTML route uses the same versioned brand stylesheet and official logo.
 for name in PAGES + ['404.html', 'docs/manual-marca.html']:
     source = (ROOT/name).read_text(encoding='utf-8')
-    assert 'styles.css?v=2.11.0' in source, f'{name}: inconsistent brand stylesheet'
+    assert 'styles.css?v=2.12.0' in source, f'{name}: inconsistent brand stylesheet'
     assert 'identity.css' not in source, f'{name}: duplicate legacy theme'
     assert 'logo-960.webp' in source, f'{name}: inconsistent logo'
     inspector = Inspector(); inspector.feed(source)
@@ -59,7 +59,7 @@ import hashlib
 fragments=[]
 for name in PAGES:
     source=(ROOT/name).read_text(encoding='utf-8')
-    assert 'booking.js?v=2.6.0' in source,name
+    assert 'booking.js?v=2.12.0' in source,name
     block=re.search(r'<dialog class="booking-dialog".*?</dialog>',source,re.S).group()
     fragments.append(hashlib.sha256(block.encode()).hexdigest())
     ids=re.findall(r'\bid="([^"]+)"',source)

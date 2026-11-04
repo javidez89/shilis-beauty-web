@@ -17,6 +17,7 @@
  if(typeof module!=='undefined')module.exports={createMessage,buildLink};
  if(!root.document)return;
  const form=document.getElementById('reservation-form');if(!form)return;
+ const submit=form.querySelector('[data-booking-submit]');
  const nameInput=form.elements.nombre;
  nameInput.addEventListener('input',()=>nameInput.setCustomValidity(''));
  form.addEventListener('submit',event=>{
@@ -26,4 +27,6 @@
   if(!form.reportValidity())return;
   window.open(buildLink(Object.fromEntries(new FormData(form))),'_blank','noopener,noreferrer');
  });
+ // The HTML button stays disabled if this handler could not be installed.
+ if(submit)submit.disabled=false;
 })(typeof window!=='undefined'?window:globalThis);
