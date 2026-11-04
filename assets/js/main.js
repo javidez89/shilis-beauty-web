@@ -22,6 +22,23 @@
     let index = 0;
     let paused = motion.matches;
     let timer;
+    let turns = [];
+    const cancelTurn = () => { turns.forEach(turn => turn.cancel()); turns = []; };
+    const turn = (previous, next, direction) => {
+      cancelTurn();
+      if (previous === next || motion.matches || typeof slides[next].animate !== 'function') return;
+      const face = 'perspective(1200px) translateX(0) rotateY(0deg) scale(1)';
+      turns = [
+        slides[previous].animate([
+          {transform: face, opacity: 1},
+          {transform: `perspective(1200px) translateX(${-direction * 24}px) rotateY(${-direction * 18}deg) scale(.95)`, opacity: .5}
+        ], {duration: 560, easing: 'cubic-bezier(.22,.75,.25,1)'}),
+        slides[next].animate([
+          {transform: `perspective(1200px) translateX(${direction * 24}px) rotateY(${direction * 18}deg) scale(.95)`, opacity: .5},
+          {transform: face, opacity: 1}
+        ], {duration: 680, easing: 'cubic-bezier(.22,.75,.25,1)'})
+      ];
+    };
     const render = () => {
       dots.forEach((dot, i) => {
         if (i === index) dot.setAttribute('aria-current', 'true');
@@ -42,8 +59,11 @@
       pause.textContent = paused ? '▶' : 'Ⅱ';
     };
     const go = target => {
+      const previous = index;
+      const direction = target < index ? -1 : 1;
       index = (target + slides.length) % slides.length;
       track.scrollTo({ left: index * track.clientWidth, behavior: motion.matches ? 'instant' : 'smooth' });
+      turn(previous, index, direction);
       render();
     };
     const restart = () => {
@@ -52,8 +72,20 @@
         if (!paused && !document.hidden && !slider.matches(':hover') && !slider.contains(document.activeElement) && !document.querySelector('dialog[open]')) go(index + 1);
       }, slider.hasAttribute('data-featured-slider') ? 8000 : 5000);
     };
-    slider.querySelector('[data-slider-prev]').addEventListener('click', () => { go(index - 1); restart(); });
-    slider.querySelector('[data-slider-next]').addEventListener('click', () => { go(index + 1); restart(); });
+    slider.querySelectorAll('[data-slider-prev]').forEach(button => button.addEventListener('click', () => { go(index - 1); restart(); }));
+    slider.querySelectorAll('[data-slider-next]').forEach(button => button.addEventListener('click', () => { go(index + 1); restart(); }));
+    slider.querySelectorAll('.slide-photo').forEach(photo => photo.addEventListener('click', event => {
+      if (event.target.closest('button')) return;
+      const bounds = photo.getBoundingClientRect();
+      go(index + (event.clientX < bounds.left + bounds.width / 2 ? -1 : 1));
+      restart();
+    }));
+    slider.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || event.target.closest('input, select, textarea')) return;
+      event.preventDefault();
+      go(index + (event.key === 'ArrowLeft' ? -1 : 1));
+      restart();
+    });
     pause.addEventListener('click', () => { paused = !paused; render(); restart(); });
     dots.forEach(dot => dot.addEventListener('click', () => { go(Number(dot.dataset.slide)); restart(); }));
     let scrollTimer;
@@ -65,7 +97,7 @@
       }, 120);
     }, { passive: true });
     new ResizeObserver(() => { track.scrollTo({ left: index * track.clientWidth, behavior: 'instant' }); }).observe(track);
-    motion.addEventListener('change', () => { paused = motion.matches; render(); });
+    motion.addEventListener('change', () => { cancelTurn(); paused = motion.matches; render(); });
     document.addEventListener('shilis:launch-closed', () => { go(0); restart(); });
     render();
     restart();

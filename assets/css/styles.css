@@ -368,6 +368,16 @@ body.launch-open{overflow:hidden}.launch-dialog{position:fixed;inset:0;width:100
 @media(max-width:800px){.service-slide:not(.welcome-slide)>.slider-photo{height:540px}}
 @media(max-width:600px){.service-slide:not(.welcome-slide)>.slider-photo{height:250px}.service-slide:not(.welcome-slide)>.slide-content{min-height:350px}}
 /* Local business information and non-blocking renovation notice. */
+/* Photo navigation and a short perspective turn, without changing slide layout. */
+.slide-photo{position:relative;min-width:0;height:550px;overflow:hidden;isolation:isolate;background:var(--brand-plum);cursor:pointer}
+.slide-photo .slider-photo{display:block;width:100%;height:100%;object-fit:cover}
+.welcome-slide>.slide-photo{grid-column:2;grid-row:1}
+.photo-arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid #ffffffa6;border-radius:50%;background:#100817bd;color:#fff;box-shadow:0 3px 16px #0004;font:400 32px/1 var(--sans);cursor:pointer;transform:translateY(-50%);transition:background .2s,border-color .2s}
+.photo-arrow:hover{background:var(--rose);border-color:#fff}
+.photo-arrow:focus-visible{outline:3px solid var(--brand-gold);outline-offset:3px}
+.photo-arrow-prev{left:16px}.photo-arrow-next{right:16px}
+@media(max-width:800px){.slide-photo{height:540px}}
+@media(max-width:600px){.slide-photo{height:250px}.welcome-slide>.slide-photo{grid-column:1;grid-row:1;height:600px}.welcome-slide .welcome-content{pointer-events:none}.welcome-content .welcome-cta{pointer-events:auto}.photo-arrow{width:44px;height:44px}.photo-arrow-prev{left:12px}.photo-arrow-next{right:12px}.welcome-slide .photo-arrow{top:28%}}
 .launch-notice{display:flex;align-items:center;justify-content:center;gap:18px;background:#21102d;color:#f7f6f2;padding:10px 20px;font-size:.88rem}
 .launch-notice[hidden]{display:none}
 .launch-notice .text-link{background:transparent;border:0;padding:4px;cursor:pointer;font:inherit;font-weight:700;color:#f6c6e8;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
