@@ -52,3 +52,15 @@ Descripción preparada para la ficha:
 La agenda privada futura usa Supabase y está desactivada en la versión pública actual. Cuando se active en el nuevo dominio, revisar también orígenes permitidos, retorno de inicio de sesión y configuración OAuth. No reactivar Google Calendar.
 
 Referencias oficiales: [SEO de Google](https://developers.google.com/search/docs/fundamentals/seo-starter-guide), [negocios locales](https://developers.google.com/search/docs/appearance/structured-data/local-business), [migraciones](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes), [popups](https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials), [Vercel Hobby](https://vercel.com/docs/plans/hobby), [Vercel Pro](https://vercel.com/docs/plans/pro-plan).
+
+## Revisión del afiche y rendimiento · versión 2.10.0
+
+Por solicitud expresa del propietario, el afiche vuelve a abrirse automáticamente al cargar el inicio, incluso después de haberlo cerrado en una visita anterior. Las páginas interiores no lo abren automáticamente; conservan la opción manual. Los enlaces directos `#agenda-tu-momento` abren primero las citas y no superponen el anuncio. El cierre funciona con el botón, Escape o el fondo. La ausencia de almacenamiento de sesión no impide abrirlo.
+
+Esta elección conserva un compromiso: Google recomienda evitar anuncios promocionales que cubran el contenido al entrar. No se aplican excepciones por navegador, robot o procedencia. Una puntuación de SEO técnico no elimina este compromiso ni garantiza posiciones.
+
+La medición inicial de PageSpeed móvil mostró 77 de rendimiento, 96 de accesibilidad, 100 de recomendaciones y 100 de SEO técnico (LCP 6,1 s, CLS 0; laboratorio, sin datos reales suficientes). Se añadieron variantes WebP adaptables para las 16 imágenes de contenido, sin cambiar las ilustraciones ni sus originales. Las variantes mayores suman 1.697.474 bytes frente a 2.400.076 de los archivos anteriores. El navegador elige variantes menores cuando corresponde. La imagen secundaria de portada carga de forma diferida; el afiche del inicio tiene prioridad de carga.
+
+Se corrigieron los roles incompatibles de las diapositivas y se ampliaron las áreas táctiles del carrusel a 28 × 32 px, con desplazamiento horizontal dentro del control en pantallas pequeñas. El mapa mantiene su previsualización: se carga al acercarse a su sección y dispone de alternativa sin JavaScript. Se añadió una prueba funcional del afiche, cierre, reapertura, almacenamiento bloqueado y prioridad del formulario de WhatsApp.
+
+Search Console ya informó estado «Correcto» para el sitemap del nuevo dominio y cinco páginas descubiertas. Descubrir páginas no equivale a tenerlas indexadas ni posicionadas. La ficha de Maps sigue pendiente del marcador exacto y la verificación del negocio; no se inventan coordenadas ni reseñas.

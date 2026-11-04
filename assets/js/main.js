@@ -2,6 +2,17 @@
 (() => {
   'use strict';
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+  // Load map previews near the visitor, rather than during the first screen.
+  const maps = document.querySelectorAll('iframe[data-map-src]');
+  const loadMap = frame => { frame.src = frame.dataset.mapSrc; frame.removeAttribute('data-map-src'); };
+  if (maps.length && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { loadMap(entry.target); observer.unobserve(entry.target); }
+      });
+    }, {rootMargin: '200px'});
+    maps.forEach(frame => observer.observe(frame));
+  } else maps.forEach(loadMap);
   document.querySelectorAll('[data-service-slider]').forEach(slider => {
     const track = slider.querySelector('.slider-track');
     const slides = [...track.children];
@@ -16,6 +27,14 @@
         if (i === index) dot.setAttribute('aria-current', 'true');
         else dot.removeAttribute('aria-current');
       });
+      const currentDot = dots[index];
+      if (currentDot) {
+        const strip = currentDot.parentElement;
+        const dotBounds = currentDot.getBoundingClientRect();
+        const stripBounds = strip.getBoundingClientRect();
+        if (dotBounds.left < stripBounds.left) strip.scrollLeft -= stripBounds.left - dotBounds.left;
+        else if (dotBounds.right > stripBounds.right) strip.scrollLeft += dotBounds.right - stripBounds.right;
+      }
       slides.forEach((slide, i) => { slide.inert = i !== index; });
       slider.querySelector('[data-slider-count]').textContent = `${String(index + 1).padStart(2, '0')} / ${slides.length}`;
       pause.setAttribute('aria-pressed', String(paused));
@@ -92,7 +111,7 @@
   }
 })();
 
-/* A compact notice keeps the page visible; the visitor opens the poster. */
+/* Show the renovation poster on arrival at home; keep booking deep links direct. */
 (() => {
   'use strict';
   const announcement = document.getElementById('novedad-shilis');
@@ -123,4 +142,12 @@
   document.querySelectorAll('[data-launch-open]').forEach(button => button.addEventListener('click', () => open(button)));
   notice?.querySelector('[data-notice-close]')?.addEventListener('click', dismissNotice);
   if (notice && (wasSeen() || location.hash === '#agenda-tu-momento')) notice.hidden = true;
+  if (document.querySelector('[data-featured-slider]') && location.hash !== '#agenda-tu-momento') {
+    const poster = announcement.querySelector('img');
+    if (poster) {
+      poster.loading = 'eager';
+      poster.fetchPriority = 'high';
+    }
+    open();
+  }
 })();

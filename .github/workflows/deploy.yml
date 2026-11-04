@@ -22,6 +22,8 @@ jobs:
           python-version: '3.12'
       - name: Validate WhatsApp notice
         run: node tests/test_whatsapp_notice.cjs
+      - name: Validate poster and booking priority
+        run: node tests/test_launch.cjs
       - name: Validate internal pages and assets
         run: python3 tests/test_site.py
       - name: Validate SEO and Vercel production build
