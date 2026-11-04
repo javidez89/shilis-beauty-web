@@ -62,7 +62,8 @@
       const previous = index;
       const direction = target < index ? -1 : 1;
       index = (target + slides.length) % slides.length;
-      track.scrollTo({ left: index * track.clientWidth, behavior: motion.matches ? 'instant' : 'smooth' });
+      const adjacent = Math.abs(index - previous) === 1;
+      track.scrollTo({ left: index * track.clientWidth, behavior: motion.matches || !adjacent ? 'instant' : 'smooth' });
       turn(previous, index, direction);
       render();
     };
