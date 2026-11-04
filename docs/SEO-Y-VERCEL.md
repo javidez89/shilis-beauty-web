@@ -15,11 +15,11 @@ Cinco páginas con títulos y descripciones propios, encabezados visibles, enlac
 
 Contenido útil para residentes de Mesitas y visitantes desde La Mesa, Anapoima, Tena y Viotá. La atención se realiza en Mesitas; no se anuncian sedes en otros municipios.
 
-Logo con versiones WebP adaptadas a cada pantalla y favicon pequeño. Afiche WebP de carga diferida, con PNG original disponible. El visitante puede abrir el popup desde un aviso discreto y desde el pie de página; el contenido principal permanece visible al entrar. Se conserva el formulario de solicitud por WhatsApp y la confirmación directa del salón.
+Logo con versiones WebP adaptadas a cada pantalla y favicon pequeño. El afiche se abre automáticamente en el inicio por solicitud del propietario; también puede abrirse desde el aviso y el pie de página. Se conserva el formulario de solicitud por WhatsApp y la confirmación directa del salón. El compromiso del anuncio automático con las recomendaciones de Google se documenta más abajo.
 
 ## Publicación preparada
 
-`vercel.json` ejecuta `node scripts/build_vercel.mjs` y publica únicamente `dist`. No se incluyen scripts de desarrollo, pruebas, información de Git ni el sistema de agenda privada que aún está en preparación.
+`vercel.json` ejecuta `node scripts/build_vercel.mjs` y publica únicamente `dist`. GitHub Pages usa el mismo generador. No se incluyen scripts de desarrollo, pruebas, información de Git ni el sistema de agenda privada descartado por el propietario.
 
 El generador toma la URL estable de `VERCEL_PROJECT_PRODUCTION_URL`, nunca la dirección temporal de cada despliegue. Si se configura `SITE_URL`, debe ser la dirección principal HTTPS confirmada. Actualiza canónicas, redes sociales, datos estructurados, sitemap y robots juntos. Las vistas previas llevan `noindex`.
 
@@ -31,9 +31,9 @@ La propiedad de prefijo `https://javidez89.github.io/shilis-beauty-web/` quedó 
 
 Después de registrar el dominio propio, se verificó también `shilispeluqueria.com` mediante DNS, se envió su sitemap y Google aceptó la solicitud de indexación de su página principal. La web ya se sirve por HTTPS en https://shilispeluqueria.com/ y las direcciones anteriores de GitHub redirigen con HTTP 301. El detalle del cambio y las comprobaciones están en `DOMINIO-SHILIS.md`.
 
-El sitemap se envió correctamente. El informe mostró inicialmente «No se ha podido obtener». Se revisaron la URL, la respuesta HTTP 200, el tipo XML y el archivo robots; una prueba en tiempo real de Search Console confirmó «Se permite el rastreo: Sí» y «Obtención de página: Correcto» para el sitemap. El envío no significa que Google ya haya procesado sus cinco páginas ni que estas estén indexadas. La página principal ya figuraba indexada y Google aceptó la solicitud de nueva indexación tras los cambios.
+El sitemap se envió correctamente y su informe pasó del error inicial a «Correcto», con cinco páginas descubiertas. Esto no equivale a tener cinco páginas indexadas. La web anterior de GitHub había figurado indexada. En la revisión posterior del dominio propio, Search Console informó para su inicio «Duplicada: Google ha elegido una versión canónica diferente a la del usuario», con último rastreo el 3 de noviembre de 2026 a las 16:07:02. La versión escogida por Google figura N/D: no afirmar cuál eligió. Las redirecciones 301 desde HTTP, www y el proyecto anterior funcionan; las etiquetas canónicas y el sitemap ya usan el dominio propio.
 
-En el administrador de Perfil de Negocio de la cuenta no apareció Shili’s. El usuario autorizó expresamente crear la ficha y aceptar sus condiciones. Se ingresaron nombre, categoría Peluquería y dirección confirmada. El alta está en curso: Google propuso un marcador aproximado de El Colegio, que debe ajustar la persona responsable del local antes de continuar. No se da por creada, publicada ni verificada la ficha. Después del marcador, completar teléfono, web, atención diaria 09:00–19:00, descripción, logo y el método de verificación que Google habilite. No afirmar que la dirección quedó verificada a partir de la marca aproximada del mapa.
+El usuario autorizó crear el Perfil de Negocio y aceptar sus condiciones. La ficha de Shili’s ya fue creada y configurada con nombre, categoría Peluquería, dirección, teléfono, web, WhatsApp, descripción, horario diario 09:00–19:00 y los catorce servicios de la web. Se cargó el logo como foto del negocio. El usuario confirmó que se atiende únicamente en el salón. El marcador se ajustó usando su enlace de Street View y la fachada que confirmó. Google exige una grabación continua real del local para verificarla; el usuario se encargará del video. La ficha aún no es públicamente visible. No crear otra ficha ni afirmar que está verificada.
 
 Descripción preparada para la ficha:
 
@@ -41,15 +41,15 @@ Descripción preparada para la ficha:
 
 ## Siguientes pasos y posible traslado futuro
 
-1. Comprobar que inicio, servicios, galería, nosotras y contacto funcionan, así como WhatsApp, mapa y página 404.
-2. Verificar que sitemap, canónicas y datos del salón usan exactamente la nueva dirección. No cambiar la canónica del sitio vigente antes de que la nueva web esté funcionando.
-3. Configurar la migración de los enlaces antiguos de GitHub Pages a sus equivalentes. GitHub Pages no admite redirecciones HTTP permanentes propias; usar las alternativas documentadas por Google cuando no sea posible configurar el servidor. Mantener los enlaces y QR antiguos funcionando.
-4. La dirección actual ya está verificada en Search Console y el sitemap está enviado. Si se traslada la web en el futuro, registrar también la nueva dirección y su sitemap. La inspección confirmó que la página principal actual ya está indexada; esto no demuestra que Google haya actualizado todavía su versión almacenada con los cambios de hoy.
-5. Actualizar el Perfil de Empresa de Google existente con el nombre real del salón, teléfono, dirección, horario, enlace web y enlace para citas. Confirmar el pin exacto con la propietaria. Evitar crear una ficha duplicada.
+1. Mantener funcionando las cinco páginas, WhatsApp, mapa y página 404. Las verificaciones actuales responden correctamente.
+2. Mantener alineados sitemap, canónicas, enlaces de inicio y datos del salón con el dominio propio. Los enlaces principales de inicio se unificaron con la URL canónica; no se eliminó la compatibilidad de las rutas antiguas.
+3. Conservar las redirecciones 301 que GitHub Pages ya aplica desde el proyecto anterior y los enlaces y QR existentes.
+4. Seguir la indexación del dominio propio y su versión canónica en Search Console. No presentar una solicitud aceptada ni una prueba en vivo válida como confirmación de indexación.
+5. Completar la verificación por video de la ficha ya creada y revisar su aprobación antes de difundir un enlace público de Maps o reseñas.
 6. Añadir fotografías reales del salón, mobiliario y trabajos con permiso. Solicitar reseñas honestas a clientas reales, sin inventarlas ni condicionar incentivos a valoraciones positivas.
 7. Revisar mensualmente consultas, clics y páginas indexadas en Search Console; mantener información y contenido actualizados. La publicación no garantiza posiciones ni plazos de indexación.
 
-La agenda privada futura usa Supabase y está desactivada en la versión pública actual. Cuando se active en el nuevo dominio, revisar también orígenes permitidos, retorno de inicio de sesión y configuración OAuth. No reactivar Google Calendar.
+La agenda de Nora y Jenny fue descartada expresamente por el propietario. No activarla ni retomar su acceso con Google o su base de reservas. Las citas siguen como consultas por WhatsApp y se confirman directamente con el salón. No reactivar Google Calendar.
 
 Referencias oficiales: [SEO de Google](https://developers.google.com/search/docs/fundamentals/seo-starter-guide), [negocios locales](https://developers.google.com/search/docs/appearance/structured-data/local-business), [migraciones](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes), [popups](https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials), [Vercel Hobby](https://vercel.com/docs/plans/hobby), [Vercel Pro](https://vercel.com/docs/plans/pro-plan).
 
@@ -63,4 +63,12 @@ La medición inicial de PageSpeed móvil mostró 77 de rendimiento, 96 de accesi
 
 Se corrigieron los roles incompatibles de las diapositivas y se ampliaron las áreas táctiles del carrusel a 28 × 32 px, con desplazamiento horizontal dentro del control en pantallas pequeñas. El mapa mantiene su previsualización: se carga al acercarse a su sección y dispone de alternativa sin JavaScript. Se añadió una prueba funcional del afiche, cierre, reapertura, almacenamiento bloqueado y prioridad del formulario de WhatsApp.
 
-Search Console ya informó estado «Correcto» para el sitemap del nuevo dominio y cinco páginas descubiertas. Descubrir páginas no equivale a tenerlas indexadas ni posicionadas. La ficha de Maps sigue pendiente del marcador exacto y la verificación del negocio; no se inventan coordenadas ni reseñas.
+Search Console ya informó estado «Correcto» para el sitemap del nuevo dominio y cinco páginas descubiertas. Descubrir páginas no equivale a tenerlas indexadas ni posicionadas. La ficha de Maps está creada y pendiente de verificación por video; no se inventan reseñas ni se presenta la ficha como visible.
+
+## Validación de posicionamiento y difusión
+
+Las cinco páginas publicadas responden 200, permiten indexación y contienen una canónica, descripción y título principal propios. Las imágenes tienen texto alternativo y las tarjetas sociales apuntan al logo oficial disponible. Los enlaces internos a servicios funcionan. No se encontraron perfiles de redes enlazados y el usuario confirmó que no tiene redes sociales: no añadir enlaces supuestos ni crear cuentas por inferencia.
+
+Se actualizan mapa y enlaces de ubicación con el punto de referencia que el propietario proporcionó: 4.5826933, -74.4458986, frente al local confirmado en Street View. Es una referencia de llegada; no se añade como coordenada de un edificio verificado en los datos estructurados.
+
+El plan de difusión debe medir búsquedas locales, clics y consultas reales por WhatsApp. Crear perfiles sociales requerirá un encargo explícito y la aceptación de sus condiciones cuando corresponda. Las propuestas de contenidos o frecuencia son recomendaciones editoriales; no prueban demanda de búsqueda ni aseguran viralidad. El rendimiento y el SEO técnico de Lighthouse no equivalen a posicionamiento orgánico.

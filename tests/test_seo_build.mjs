@@ -15,11 +15,13 @@ for (const file of Object.keys(pages)) {
   assert(source.includes(`<link rel="canonical" href="${canonical}">`), file);
   assert(source.includes(`<meta property="og:url" content="${canonical}">`), file);
   assert(!source.includes('ephemeral-123') && !source.includes(legacyBase), file + ' stale origin');
+  assert(source.includes(`href="${base}"`) && !source.includes('href="index.html"'), file + ' must link to the canonical homepage');
   assert(source.includes('content="index,follow,max-image-preview:large"'), file);
   const graph = JSON.parse(source.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'];
   const salon = graph.find(node => node['@type'] === 'BeautySalon');
   assert.equal(salon.url, base);
   assert.equal(salon.address.streetAddress, 'Avenida Medina 8 # 7-29');
+  assert.equal(salon.hasMap, 'https://www.google.com/maps/search/?api=1&query=4.5826933%2C-74.4458986');
   assert.equal(salon.openingHoursSpecification.opens, '09:00');
   assert.equal(salon.openingHoursSpecification.closes, '19:00');
   assert.equal(salon.openingHoursSpecification.dayOfWeek.length, 7);

@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const legacyBase = 'https://javidez89.github.io/shilis-beauty-web/';
 export const productionBase = 'https://shilispeluqueria.com/';
-export const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Shili’s, Avenida Medina 8 # 7-29, Mesitas del Colegio, Cundinamarca, Colombia');
+// Reference point supplied by the owner in Street View, in front of the confirmed premises.
+export const maps = 'https://www.google.com/maps/search/?api=1&query=4.5826933%2C-74.4458986';
 export const pages = {
   'index.html': ['Peluquería en Mesitas del Colegio | Shili’s', 'Shili’s Alta Peluquería y Belleza en Mesitas del Colegio. Cabello, uñas y mirada en Avenida Medina 8 # 7-29. Todos los días, 9 a. m.–7 p. m.'],
   'servicios.html': ['Servicios de peluquería y belleza en Mesitas | Shili’s', 'Descubre cepillados, cortes, queratinas, manicure, pedicure, cejas y peinados en Shili’s, Mesitas del Colegio. Consulta precios y citas por WhatsApp.'],
@@ -49,6 +50,7 @@ export function applySeo(directory, {base = productionBase, preview = false} = {
     let source = fs.readFileSync(target, 'utf8');
     const url = base + (file === 'index.html' ? '' : file);
     source = source.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
+      .replace(/href="([^"]+)"/g, (tag, href) => ['index.html', './', productionBase, legacyBase].includes(href) ? `href="${escape(base)}"` : tag)
       .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escape(description)}">`)
       .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${escape(url)}">`)
       .replace(/<meta name="robots" content="[^"]*">/, `<meta name="robots" content="${preview ? 'noindex,follow' : 'index,follow,max-image-preview:large'}">`)

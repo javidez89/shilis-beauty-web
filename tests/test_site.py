@@ -30,7 +30,10 @@ for name in PAGES:
     for ref in p.refs:
         assert (ROOT/ref).exists(),f'{name}: missing resource {ref}'
     for other in PAGES:
-        if other!=name:assert other in txt,f'{name} missing nav link {other}'
+        if other!=name:
+            if other=='index.html':
+                assert re.search(r'<a[^>]+href="https://shilispeluqueria\.com/"',txt),f'{name} missing canonical home link'
+            else:assert other in txt,f'{name} missing nav link {other}'
     assert '318 786 2277' in txt or '573187862277' in txt, name+' missing WhatsApp'
     assert 'https://www.google.com/maps/search/?api=1&amp;query=' in txt, name+' missing map link'
     assert 'width=device-width' in txt,name+' missing viewport'
